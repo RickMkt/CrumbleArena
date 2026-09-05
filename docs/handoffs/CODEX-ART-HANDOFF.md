@@ -1,6 +1,7 @@
 # Handoff de arte do Codex
 
-Estado: Checkpoint visual aplicado no Studio, aguardando save manual e Play test final.
+Estado: art pass V1 salvo; auditoria brutal do V1 concluida em 2026-09-05. Proposta V2
+documentada e ainda nao construida.
 
 ## Escopo respeitado
 
@@ -98,8 +99,9 @@ esses valores.
 - `CrumbleCore`: 37 descendentes, 33 BaseParts, 0 colisao
 - 5 capturas iniciais e 10 capturas de comparacao/inspecao
 
-Play test, Output limpo de jogo, teste da borda e reconstrucoes descartaveis ainda nao
-foram concluidos. Nao devem ser apresentados como testados.
+Este bloco descrevia o checkpoint anterior. Em 2026-09-05, a auditoria V1 posterior
+concluiu Play test, teste da borda e testes descartaveis de capacidade. Os resultados
+confirmados estao na secao "Auditoria V1 posterior" abaixo.
 
 ## Capturas produzidas
 
@@ -116,3 +118,48 @@ foram concluidos. Nao devem ser apresentados como testados.
 - Claude: nenhuma mudanca de caminho de instancia foi exigida pelo art pass.
 - Produto: teste em celular real continua fora do alcance desta sessao.
 
+## Auditoria V1 posterior — 2026-09-05
+
+Documentos criados:
+
+- `docs/LOBBY-V1-BRUTAL-AUDIT.md`
+- `docs/LOBBY-V2-PROPOSAL.md`
+- `docs/LOBBY-V2-BUILD-PLAN.md`
+
+Estado de seguranca confirmado:
+
+- Place canonico: `C:\Users\ricka\Desktop\CrumbleArena\CrumbleArena.rbxl`
+- 333.256 bytes, timestamp observado `2026-09-05 15:50:10`
+- backup novo: `backups\CrumbleArena-before-v2-audit-2026-09-05T1605.rbxl`
+- SHA-256 de canônico e backup no inicio da auditoria:
+  `712E72694E1695B240616134482AADD3595183F48D76D0656C3777558FF2316D`
+- Studio encerrado em Edit; `AuditMovingRigs` e `CapacityTest` removidos
+- nenhuma mudanca V2 foi aplicada ao Place
+
+Resultados confirmados no Play:
+
+- sete rotas oficiais passaram sem pulo a WalkSpeed 18
+- a rota de Cosmetics falhou duas vezes no segmento 8, bloqueada pelo balcao/postes
+- oito rigs em movimento simultaneo percorreram 21,9 a 34,1 studs; menor distancia
+  entre pares 22,66 studs e zero pares abaixo de 4 studs
+- as quatro cadeiras da SocialArea sao acessiveis e funcionais
+- a barreira conteve o avatar; o FallZone registrou toque e o respawn funcionou
+- `LobbyMusic` continuou em `Playing = false` com o toggle inicial ligado
+- nao houve erro de jogo no Output; a unica mensagem posterior foi produzida pela
+  propria sonda ao Studio negar a alteracao de `SavedQualityLevel`
+
+Medidas principais do lobby ativo, excluindo a biblioteca em `ImportedAssets`:
+
+- 2.448 descendentes e 1.785 BaseParts
+- 0 pecas nao ancoradas, 0 scripts e 0 remotes no lobby
+- 51 MeshIds unicos e 12 referencias unicas de textura/superficie
+- 805 BaseParts com `TopSurface = Studs` (45,1%)
+- 624 pecas nao colidiveis ainda com `CanTouch` e 487 com `CanQuery`
+- 1.694 pecas com `CastShadow`
+
+Limitacoes confirmadas:
+
+- nao houve emulador de aparelho; mobile foi analisado por codigo e dimensoes
+- o Studio bloqueou a mudanca automatica de qualidade grafica por falta da capacidade
+  interna `RobloxScript`; `SavedQualityLevel` permaneceu `Automatic`
+- a V2 nao deve ser construida antes de aprovacao explicita do usuario
