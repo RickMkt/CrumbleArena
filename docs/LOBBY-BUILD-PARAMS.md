@@ -47,14 +47,38 @@ Discos concentricos, todos com topo entre `Y = 0.5` e `Y = 0.9`.
 Emblema do bloco rachado no centro, com 6 fissuras rentes ao piso. Diametro util da praca:
 84 studs.
 
-`LobbySpawn` e um `SpawnLocation` de 20 x 1 x 20 em `(0, 1.45, 0)`, invisivel, ancorado,
+`LobbySpawn` e um `SpawnLocation` de 12 x 0.2 x 12 em `(0, 0.90, -18)`, invisivel, ancorado,
 com colisao, `Neutral = true`, `Duration = 0`. A orientacao identidade faz o personagem
-nascer olhando para `-Z`.
+nascer olhando para `-Z`, que e a direcao do `EventBoard`.
+
+Ele ja esteve em `(0, 1.45, 0)` com 20 x 1 x 20, como este documento dizia ate 2026-09-05.
+Depois alguem pos a `CentralFountain` no centro da praca e empurrou o spawn para `z = +18`,
+sem atualizar o documento. Isso deixou a fonte entre o jogador e o `EventBoard`, escondendo
+o board inteiro. Na sessao 008 o spawn foi para `z = -18`, o espelho exato do que estava:
+mesma distancia do centro, lado oposto, com a fonte agora as costas do jogador.
+
+O tamanho continua 12 x 12 de proposito. O piso da praca e feito de aneis concentricos, e a
+faixa plana mais larga entre dois aneis tem cerca de 10 studs, entao uma plataforma maior
+ficaria com borda flutuante. Com 12 x 12 e oito jogadores nascendo juntos, a menor distancia
+entre dois personagens fica em 4,00 studs, que e exatamente o limiar de conforto.
 
 ## Caminhos
 
 8 caminhos, cada um uma bezier quadratica da borda da praca ate a area, com 9 segmentos.
-Largura entre 16 e 20 studs, meio fio sem colisao dos dois lados.
+Largura entre 16 e 20 studs, meio fio sem colisao dos dois lados. Conferido na sessao 008:
+os 8 caminhos tem **0 meio fio com colisao**, entao o meio fio nao bloqueia ninguem.
+
+Os segmentos nasceram com comprimento menor que o passo entre eles, e giram cerca de 4 graus
+por segmento nas curvas. Como sao caixas retangulares, a emenda virava uma cunha: fechada na
+borda interna da curva, 0,10 no centro e ate 0,66 na borda externa, que fica dentro da faixa
+que o jogador pisa. Na sessao 008 as 192 pecas de caminho, placa e meio fio, foram alongadas
+0,8 no proprio eixo, mantendo o centro. Todas as frestas foram a zero.
+
+As placas agora se sobrepoem um pouco na emenda, e isso e proposital. Em curva, com caixas
+retangulares, ou sobra fresta do lado de fora ou sobra sobreposicao do lado de dentro, nao
+existe terceira opcao. Como cada placa esta numa altura diferente, as faces de cima nunca
+sao coplanares e nao ha z-fighting. Ver `tools/fixes/01-ClosePathSeams.luau`, que guarda o
+comprimento original de cada peca em atributo e traz a reversao escrita.
 
 | Caminho | Destino x, z | Altura final | Largura | Curvatura |
 | --- | --- | --- | --- | --- |
@@ -71,13 +95,28 @@ Largura entre 16 e 20 studs, meio fio sem colisao dos dois lados.
 
 | Area | Centro x, z | Topo da laje | Laje |
 | --- | --- | --- | --- |
-| EventBoard | 0, -84 | 4.5 | 46 x 30 |
-| Cosmetics | -80, -50 | 3.5 | 46 x 38 |
-| Gamepasses | 80, -50 | 3.5 | 44 x 36 |
+| EventBoard | 0, -84 | 2.5 | 46 x 30 |
+| Cosmetics | -80, -50 | 2.5 | 46 x 38 |
+| Gamepasses | 80, -50 | 2.5 | 44 x 36 |
 | Leaderboard | -92, 20 | 2.5 | 42 x 36 |
 | MapVote | 92, 20 | 2.5 | 46 x 40 |
 | Training | -56, 82 | 0.7 | 44 x 38 |
 | SocialArea | 0, 100 | 2.5 | 36 x 26 |
+
+Conferido peca por peca na sessao 008. Centros e tamanhos batiam; o **topo** nao batia. Este
+documento dizia 4.5 no `EventBoard` e 3.5 no `Cosmetics` e no `Gamepasses`, e a realidade e
+2.5 em todas. As lajes estao todas na mesma altura.
+
+Cuidado com o nome `Pad`. Ele nem sempre e a peca pisavel:
+
+- `SocialArea` nao tem `Pad`, o piso chama `Deck`, e o `DeckTrim` tem topo em 0.40, abaixo
+- `EventBoard`, `Cosmetics`, `Gamepasses`, `Leaderboard` e `MapVote` tem `PadTrim` maior que
+  o proprio `Pad`
+- `TrainingPoint` tem uma **pasta** chamada `Pad`, nao uma peca
+- o `StepRing` de varias areas tem 6.25 de espessura e e degrau, nao piso
+
+Quem for medir area util por script precisa achar o piso por raio ou filtrar por espessura,
+nunca por nome.
 | Parkour StartPad | 58, 84 | 2.5 | 16 x 16 |
 | FutureFeatures | -78, -8 | mural, sem laje | 25 de largura |
 

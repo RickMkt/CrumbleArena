@@ -356,6 +356,54 @@ porque o Studio fechou antes.
 `AppData\Local\Roblox\RobloxStudio\AutoSaves`, e nao em `AppData\Local\Roblox\AutoSaves`.
 A primeira busca olhou no lugar errado e quase concluiu que nao havia recuperacao.
 
+## D-019, 2026-09-05: caminhabilidade se mede andando, nao com sonda
+
+**Contexto:** a circulacao do lobby foi medida de tres jeitos na sessao 008. Raio de cima
+para baixo acusou 6 rotas com problema, e estava errado: o raio acertava toldo, balcao e a
+propria fonte. `PathfindingService` com agente sem pulo acusou 3 emendas sem rota no
+`PathSocial`, e tambem estava errado: o personagem andou aquele trecho inteiro, do spawn ao
+deck, em 6,8 segundos, com `JumpPower = 0`.
+
+**Decisao:** o criterio de circulacao e um Humanoid R15 andando com o pulo anulado, em modo
+Play. Sonda por raio serve para achar suspeita, nunca para dar veredito. `PathfindingService`
+so vale como criterio quando o que se quer medir e NPC, porque jogador nao usa navmesh.
+
+**Como se verifica:** `hum.UseJumpPower = true`, `hum.JumpPower = 0`, e uma sequencia de
+`MoveTo` pelos centros das placas do caminho, conferindo a distancia ao alvo a cada 0,1 s.
+Rota so conta como aprovada se o personagem chegar a menos de 4 studs do ultimo alvo.
+
+**Consequencia:** quatro afirmacoes minhas na mesma sessao foram falso positivo da propria
+ferramenta de medicao. Toda medida por raio agora precisa dizer **em que peca bateu**, e o
+relatorio precisa conferir se aquela peca e piso mesmo.
+
+---
+
+## D-020, 2026-09-05: placa de caminho em curva se sobrepoe, e isso nao fere a D-015
+
+**Contexto:** as placas dos caminhos giram cerca de 4 graus por segmento nas curvas. Como
+sao caixas retangulares, a emenda virava cunha: fechada na borda interna, 0,10 no centro e
+ate 0,66 na borda externa, dentro da faixa que o jogador pisa. O meio fio nao cobre, ele
+comeca exatamente na borda da placa e vai para fora.
+
+**Decisao:** as 192 pecas de caminho, placa e meio fio, foram alongadas 0,8 no proprio eixo,
+mantendo o centro. Elas passam a se sobrepor um pouco na emenda.
+
+**Por que nao fere a D-015:** a D-015 proibe duas faces do mesmo sentido no mesmo plano, que
+e o que causa z-fighting. Placas vizinhas estao em alturas diferentes, entao as faces de
+cima nunca sao coplanares. As faces que se encontram na emenda tem sentidos opostos, e depois
+do alongamento ficam enterradas. Em curva, com caixa retangular, ou sobra fresta do lado de
+fora ou sobra sobreposicao do lado de dentro, nao existe terceira opcao.
+
+**Como se verifica:** varrer **ao longo** do caminho atravessando a emenda, de 0,02 em 0,02,
+e medir o comprimento do trecho que cai na grama. Amostrar em cima da linha da emenda sempre
+da aberto e nao mede nada. Depois da correcao: 0,00 nos 8 caminhos.
+
+**Consequencia:** ninguem deve "consertar" essa sobreposicao numa proxima varredura de
+D-015. `tools/fixes/01-ClosePathSeams.luau` guarda o comprimento original de cada peca em
+atributo e traz a reversao escrita no arquivo.
+
+---
+
 # Decisoes pendentes
 
 Nenhuma destas tem resposta ainda. Elas estao aqui para nao virarem improviso.

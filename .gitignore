@@ -15,3 +15,6 @@ assets/normalized/
 Thumbs.db
 .vscode/
 sourcemap.json
+
+# Backups do place. Pesados, binarios, e a recuperacao vive fora do Git.
+backups/

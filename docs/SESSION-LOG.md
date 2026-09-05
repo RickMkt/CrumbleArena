@@ -688,3 +688,75 @@ Isso virou a D-018.
 
 Studio fechado. O place canonico e hoje um arquivo de recuperacao, nao um save. Precisa
 ser aberto, conferido e salvo com `Ctrl + S`.
+
+---
+
+## Sessao 008, 2026-09-05
+
+Checkpoint A da auditoria completa do lobby. A ponte MCP voltou as 03:20.
+
+### Como o bloqueio de tres sessoes foi resolvido
+
+Nao existe plugin de MCP. A pasta de plugins do Studio so tem o `RojoManagedPlugin.rbxm`.
+O servidor MCP vive dentro do painel Assistant, entao ele so liga quando o painel e aberto
+na janela. O toggle persiste entre aberturas, ao contrario do que o SkillLab registrou.
+O que nao persiste e o painel aberto. Corrigido na secao 9 do `PROJECT-MEMORY.md`.
+
+O place foi salvo as 03:18, antes de qualquer medicao. Log do Studio:
+`saveDataModelToLocalFile succeeded in 79 ms`. Ele deixou de ser um arquivo de recuperacao.
+
+### Medido com evidencia
+
+| Item | Resultado |
+| --- | --- |
+| Capacidade para oito jogadores, 8 rigs R15 reais | 9 de 9 criterios aprovados |
+| Menor distancia entre dois personagens no spawn | 4,00 studs, exatamente o limiar |
+| Circulacao, 8 rotas andadas com `JumpPower = 0` | 7 completas, `PathCosmetics` para no balcao |
+| `PathSocial` inteiro, do spawn ao deck, sem pular | 6,8 s |
+| Linhas de visao do spawn para as atracoes | 6 de 6 livres apos mover o spawn |
+| Pecas com colisao invisiveis a raycast | 1 em 922, corrigida |
+| Pecas sem ancoragem no workspace | 0 em 1.769 |
+| Pecas com nome generico | 0 |
+| Meio fio com colisao | 0 nos 8 caminhos |
+| Fresta entre placas, antes | ate 0,66 na borda externa das curvas |
+| Fresta entre placas, depois | 0,00 nos 8 caminhos |
+| `CrumbleUI` em Play | 551 descendentes, `UIController` ativo |
+| Erros e avisos no Output em Play | 0 e 0 |
+| `stylua` e `selene` em `tools/` | 0 erros, 7 avisos pre-existentes nos scripts 01 e 03 |
+
+### Corrigido, tudo reversivel por atributo
+
+1. Spawn movido de `z = +18` para `z = -18`. A fonte central escondia o `EventBoard`
+   inteiro: ela cobre 44,3 graus e sobe a 24, e o topo do board esta a 15,1
+2. Spawn assentado. Flutuava 0,25 e criava degrau de 1,25, agora 0,10 e 0,30
+3. `FountainCollision.CanQuery` de falso para verdadeiro
+4. `AssetStaging` movido para `ServerStorage.DeferredContent`. Eram 46 pecas visiveis
+   enfiadas na laje de Cosmetics, com 82 contatos com a geometria
+5. `ShopPrompt.MaxActivationDistance` de 14 para 20. Quem sobe o caminho para a 17,9
+6. 192 placas e meios fios alongados 0,8, fechando as frestas das curvas
+
+### Quatro medicoes minhas que estavam erradas
+
+Ficam registradas porque a licao vale mais que o numero.
+
+| O que eu afirmei | O que era |
+| --- | --- |
+| Buraco de 4,5 studs no `PathEventBoard` | varredura de 0,5 caindo exatamente nas frestas de 0,08 |
+| Degrau de 7,20 no `PathCosmetics` | o raio atravessou o balcao e o toldo, 10 studs acima do piso |
+| `EventBoard` e `SocialArea` inalcancaveis | o destino escolhido caia dentro de viga e do `Deck` |
+| 49% das emendas abertas para a grama | amostrei em cima da linha da emenda, onde sempre da aberto |
+
+O `PathfindingService` foi descartado como criterio de circulacao: ele reprovou tres
+emendas do `PathSocial` que o personagem atravessa andando, sem pular.
+
+### Nao testado
+
+- qualquer coisa visual depois das 4 primeiras capturas. A janela do Studio ficou oculta,
+  a renderizacao foi limitada e `screen_capture` passou a dar timeout
+- painel da GUI aberto por clique
+- `ProximityPrompt` por tecla
+- celular real
+
+### Bloqueio
+
+`Ctrl + S` das seis correcoes. Sem isso elas se perdem.

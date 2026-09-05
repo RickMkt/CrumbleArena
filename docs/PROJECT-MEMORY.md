@@ -265,6 +265,14 @@ Coisas que ja custaram tempo e nao sao obvias. Comprovadas nesta maquina.
 | `RenderStepped` mede errado durante chamada MCP | a janela do Studio perde o foco e a renderizacao e limitada. Deu 14.9 contra 60.0 reais. Medir desempenho por `Heartbeat` e `workspace:GetRealPhysicsFPS()` |
 | Raycast que comeca dentro de uma peca nao a detecta | um raio saindo da base de um prop atravessa a grama e acerta a face de baixo, 6 studs abaixo. Isso gera falso positivo de peca enterrada. Comecar o raio acima da superficie, ou filtrar por `Include` contra as pecas de chao |
 | `NormalId.Front` e a face `-Z` | e a mesma direcao de `CFrame.LookVector`. Uma placa montada com `CFrame.lookAt(pos, pos + direcaoDeLeitura)` fica correta com `Face = Front` |
+| A ponte MCP nao e um plugin, e o painel Assistant | nao existe arquivo em `AppData\Local\Roblox\Plugins`. So o `RojoManagedPlugin.rbxm` mora la. O servidor MCP vive dentro do Assistant, entao o painel precisa ser aberto uma vez por janela do Studio, senao a ponte nunca sobe |
+| O toggle do MCP persiste, ao contrario do que o SkillLab registrou | `AssistantSettings/3397077861.json` guarda `"mcp-server": { "enabled": true }` entre aberturas. O que nao persiste e o painel aberto |
+| `screen_capture` precisa da janela do Studio visivel | com a janela oculta ou minimizada, o Studio limita a renderizacao, o log mostra `Pushing throttle render state` e a captura da timeout. O `execute_luau` continua respondendo normalmente, entao da para trabalhar sem ver |
+| `ViewportSize` volta `1, 1` com a janela oculta | e o mesmo sintoma acima visto de dentro do jogo. A guarda do `ajustarEscala` no `UIController` existe por causa disso |
+| `PathfindingService` nao serve para medir caminhabilidade | ele reprovou 3 emendas do `PathSocial` onde o personagem andou sem pular, do spawn ao deck, em 6,8 s. Para medir se o jogador passa, ande com um Humanoid e `JumpPower = 0`. Navmesh so importa para NPC |
+| Raio amostrado em cima da linha de uma emenda sempre da aberto | placas vizinhas tem fresta de fracao de stud. Amostrar exatamente no meio entre dois centros cai nela e acusa buraco onde nao ha. Para medir fresta, varra **ao longo** do caminho e meca o comprimento do trecho aberto |
+| Destino de teste dentro de geometria da falso inalcancavel | escolher o centro de uma area por heuristica de tamanho cai dentro de viga, toldo ou balcao. Achar o piso por raio, ou filtrar por espessura |
+| Hub e Studio sao coisas separadas | o `StudioMCP.exe` escutando em `127.0.0.1:13469` nao prova nada. Ele fica de pe mesmo com o Studio sem Assistant. A prova e `grep -i mcp` no log do Studio: zero mencao significa que o lado de dentro nunca ligou |
 
 ---
 

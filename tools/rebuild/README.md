@@ -17,7 +17,14 @@ mesmo criou antes de recriar.
 
 | Arquivo | O que reconstroi | Estado |
 | --- | --- | --- |
-| `01-BuildLobbyUI.luau` | `ReplicatedStorage.CrumbleArena.UI`, `StarterGui.CrumbleUI`, `SoundService.LobbyMusic` e `SoundService.SFX` | escrito, **nao testado** |
+| `01-BuildLobbyUI.luau` | `ReplicatedStorage.CrumbleArena.UI`, `StarterGui.CrumbleUI`, `SoundService` | escrito, **nao testado** |
+| `02-BuildIslandFence.luau` | cerca de 48 postes no raio 120.5, e a barreira invisivel de 26 studs | escrito, **nao testado** |
+| `03-BuildCosmeticsTent.luau` | tenda de lona da area Cosmetics e o NPC lojista PIP | escrito, **nao testado** |
+| `04-ApplyEnvironment.luau` | iluminacao, ceu, nuvens e a musica do lobby | escrito, **nao testado** |
+
+Os quatro imprimem o que fizeram e conferem o proprio resultado. O `02` conta furos na
+barreira e postes flutuando, o `03` avisa se faltar peca na area, e o `04` imprime o
+estado anterior da iluminacao antes de mudar, para dar como reverter.
 
 O `UIController` nao esta neste script de proposito. A fonte dele e
 `src/client/Controllers/UIController.client.luau`, que e versionada e passa no lint.
@@ -29,10 +36,11 @@ Para reinstalar, copiar aquele arquivo para `StarterPlayer.StarterPlayerScripts`
 Estes foram construidos a mao e continuam so no place. Se o place se perder de novo,
 eles se perdem junto:
 
-- cerca da borda da ilha, 193 pecas, e as 36 barreiras invisiveis de 26 studs
-- tenda e NPC lojista da area Cosmetics
-- iluminacao, ceu e nuvens
 - toda a geometria do lobby, que e o caso mais antigo e mais caro, ver D-P01
+- a decoracao espalhada a mao ao longo das sessoes, arvore por arvore
+
+A cerca, a tenda, o NPC e a iluminacao sairam desta lista quando os scripts `02`, `03` e
+`04` foram escritos.
 
 ## Por que isto existe
 
