@@ -1,0 +1,42 @@
+{
+  "name": "CrumbleArena",
+  "tree": {
+    "$className": "DataModel",
+    "ReplicatedStorage": {
+      "Shared": {
+        "$path": "src/shared"
+      },
+      "Utils": {
+        "$path": "src/utils"
+      },
+      "UI": {
+        "$path": "src/ui"
+      }
+    },
+    "ServerScriptService": {
+      "Server": {
+        "$path": "src/server"
+      }
+    },
+    "StarterPlayer": {
+      "StarterPlayerScripts": {
+        "Client": {
+          "$path": "src/client"
+        }
+      }
+    },
+    "Workspace": {
+      "$properties": {
+        "Gravity": 196.2
+      }
+    },
+    "Lighting": {
+      "$properties": {
+        "Ambient": [0.16, 0.18, 0.22],
+        "OutdoorAmbient": [0.30, 0.32, 0.38],
+        "Brightness": 2,
+        "ClockTime": 14
+      }
+    }
+  }
+}

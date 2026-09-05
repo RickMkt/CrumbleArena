@@ -1,0 +1,10 @@
+# Versoes fixadas do toolchain do Crumble Arena.
+# Nesta maquina as ferramentas estao instaladas via `cargo install`, nao via Rokit.
+# As versoes abaixo refletem exatamente o que foi validado na sessao 001.
+# Veja docs/DECISIONS.md, decisao D-004.
+
+[tools]
+rojo = "rojo-rbx/rojo@7.7.0"
+stylua = "JohnnyMorganz/StyLua@2.5.2"
+selene = "Kampfkarren/selene@0.31.0"
+lune = "lune-org/lune@0.10.5"

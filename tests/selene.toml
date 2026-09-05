@@ -1,0 +1,3 @@
+# Os testes rodam no Lune, nao no Roblox, entao usam a biblioteca padrao do Luau.
+# Uso: selene --config tests/selene.toml tests
+std = "luau"

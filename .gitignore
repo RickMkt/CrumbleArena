@@ -1,0 +1,17 @@
+# Builds locais do Rojo
+*.rbxl
+*.rbxlx
+*.rbxl.lock
+*.rbxlx.lock
+build.rbxl
+
+# Assets brutos e normalizados. Ficam fora do Git por peso.
+# A fonte de verdade dos assets e o acervo SkillLab, ver docs/ASSET-INVENTORY.md.
+assets/raw/
+assets/normalized/
+
+# Sistema operacional e editores
+.DS_Store
+Thumbs.db
+.vscode/
+sourcemap.json
