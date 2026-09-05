@@ -1,77 +1,68 @@
 # Estado atual
 
-Atualizado em 2026-09-05, fim do Checkpoint A da auditoria do lobby, sessao 008.
+Atualizado em 2026-09-05, Checkpoint visual do art pass do Codex.
 
 ## Onde o trabalho parou
 
-O Checkpoint A foi executado inteiro, com a ponte MCP funcionando. O lobby tem agora a
-primeira medicao real de capacidade para oito jogadores desde a sessao 001, e a primeira
-medicao de circulacao feita **andando** em vez de por sonda.
+O lobby recebeu o primeiro bloco do art pass no Place canonico, em modo Edit. As
+alteracoes estao na memoria do Studio e aguardam `Ctrl + S` manual antes do Play test e
+do teste dos scripts de reconstrucao em ambiente descartavel.
 
-O que falta e quase todo visual, e esta bloqueado pela janela do Studio estar oculta.
+O trabalho do Claude continua separado em `C:\Users\ricka\Desktop\CrumbleArena-claude`,
+branch `feat/lobby-runtime`. Este checkout esta em `feat/lobby-art-pass`. Nenhum arquivo
+de `src/` foi alterado pelo Codex.
 
-## Percentuais da auditoria
+## Alteracoes visuais aplicadas
 
-| Faixa | Resultado | Antes |
-| --- | --- | --- |
-| Fundacao estrutural | 82,5 de 100 | nao calculado |
-| Experiencia do lobby | 30 de 100 | nao calculado |
-| Prontidao para producao | 32,5 de 100 | nao calculado |
+1. `CentralPlaza.CrumbleCore` criado com 7 fissuras assimetricas, 5 lajes deslocadas e um
+   bloco de 4 fragmentos suspenso. Todas as 33 pecas sao ancoradas e sem colisao.
+2. A fonte foi preservada e integrada ao conceito. Pedra, agua e vegetacao receberam
+   cores mais coerentes; o modelo carrega `IntegratedConcept = CrumbleCore`.
+3. `PlazaMedallion` virou a fundacao de pedra do simbolo central.
+4. Training e Parkour agora dizem `COMING SOON` nas placas fisicas.
+5. `Props.Vegetation.Tree_20` saiu da linha de visao dos dois cards de Gamepasses. O CFrame
+   anterior esta preservado no atributo `CodexOriginalCFrame`.
+6. Os 238 `TopSurface = Studs` sem efeito em pecas `SmoothPlastic` foram removidos. Os
+   studs visiveis em pecas `Plastic` foram preservados.
+7. Iluminacao, atmosfera, nuvens, bloom e cor foram refinados sem trocar o skybox.
 
-Detalhe e evidencia em `LOBBY-COMPLETE-AUDIT.md`.
+## Creator Store
 
-## O place
+`search_asset` foi usado de verdade. O `platformer-pack`, Asset ID `140612564742843`, da
+conta `KittyPatife`, foi inserido em quarentena e auditado: 8 MeshParts e 0 conteudo
+proibido. Ficou apenas como biblioteca em `ImportedAssets` a `Y = -600`, sem colisao. Os
+20 resultados publicos de rochas e bandeiras foram recusados por origem fraca.
 
-`CrumbleArena.rbxl`, salvo as 03:18 de 2026-09-05. Ele deixou de ser um arquivo de
-recuperacao automatica, o que era a pendencia mais grave desde a sessao 007.
+## Valores finais de iluminacao deste checkpoint
 
-**As seis correcoes desta sessao ainda nao estao salvas.** Elas pedem `Ctrl + S`.
+`Brightness 2.2`, `ClockTime 14.2`, latitude `18`, exposicao `-0.02`, ambient
+`92,98,112`, outdoor `146,156,172`, sombras `0.32`, diffuse `0.62`, specular `0.18`,
+bloom `0.12 / 20 / 1.9`, atmosfera `0.16 / 0.03 / 0.8 / 0.02`, color correction
+`saturacao 0.08 / contraste 0.10`, nuvens `0.42 / 0.62`.
 
-## Correcoes aplicadas nesta sessao
+## Validacao antes do save
 
-Todas guardam o estado anterior em atributo na propria peca, entao da para reverter sem
-consultar log.
-
-1. `LobbySpawn` de `(0, 1.45, 18)` para `(0, 0.90, -18)`, e de 12 x 1 x 12 para 12 x 0.2 x 12
-2. `FountainCollision.CanQuery` para verdadeiro
-3. `AssetStaging` para `ServerStorage.DeferredContent`
-4. `ShopPrompt.MaxActivationDistance` de 14 para 20
-5. 192 placas e meios fios de caminho alongados 0,8
-6. o proprio spawn assentado no piso, sem flutuar
-
-## O que ainda esta Reprovado
-
-| Item | Peso | Quem resolve |
-| --- | --- | --- |
-| Teste em celular real | 25 | Rick, no aparelho |
-| SFX de interface | 15 | eu, e e o proximo da fila |
-
-O de capacidade para oito, que valia 20 e nunca tinha sido tentado, saiu desta lista.
-
-## Bloqueios
-
-| Bloqueio | Efeito |
+| Verificacao | Resultado |
 | --- | --- |
-| `Ctrl + S` pendente | as seis correcoes se perdem se o Studio fechar |
-| Janela do Studio oculta | `screen_capture` da timeout, entao nada visual pode ser avaliado |
+| Studio | `CrumbleArena.rbxl`, modo Edit |
+| BaseParts no lobby | 1.809, incluindo 8 da biblioteca em Y = -600 |
+| Pecas nao ancoradas | 0 |
+| Scripts no lobby | 0 |
+| Remotes no lobby | 0 |
+| Studs sem efeito em SmoothPlastic | 0 |
+| Colisores invisiveis inesperados | 0 |
+| CrumbleCore | 37 descendentes, 33 BaseParts, 0 colisao |
+| Capturas iniciais | 5 angulos principais |
+| Capturas comparativas | centro, iluminacao e areas futuras |
 
-O segundo tem contorno: `execute_luau` continua respondendo com a janela oculta, entao todo
-trabalho de medicao e correcao por script segue possivel. So o olhar esta bloqueado.
+O Output contem apenas um erro de `AssistantCommand` gerado por uma tentativa de ler a
+propriedade protegida `Lighting.Technology`. Nao veio de script do jogo e nao alterou o
+Place.
 
-## Proxima etapa
+## Proximos passos depois do save
 
-Checkpoint B: audio primeiro, porque e o unico Reprovado que eu resolvo sozinho e vale 15
-pontos. Depois GUI por clique, responsividade e Output.
-
-## Rede de seguranca
-
-| Script | Reconstroi |
-| --- | --- |
-| `tools/rebuild/01-BuildLobbyUI.luau` | GUI inteira, 5 paineis, HUD |
-| `tools/rebuild/02-BuildIslandFence.luau` | cerca de 48 postes e barreira de 26 studs |
-| `tools/rebuild/03-BuildCosmeticsTent.luau` | tenda de lona e o NPC |
-| `tools/rebuild/04-ApplyEnvironment.luau` | iluminacao, ceu, nuvens e musica |
-| `tools/audit/A1-CapacityEightPlayers.luau` | mede capacidade para oito |
-| `tools/fixes/01-ClosePathSeams.luau` | fecha as frestas dos caminhos, com reversao |
-
-Continua sem script: a geometria do lobby, ver D-P01, e a decoracao espalhada a mao.
+1. Testar os quatro scripts de `tools/rebuild` em uma copia descartavel, nunca no Place
+   canonico.
+2. Fazer Play test de circulacao, borda, cadeiras, fonte e Output.
+3. Voltar a Edit e produzir as capturas finais.
+4. Finalizar `docs/handoffs/CODEX-ART-HANDOFF.md` e pedir o salvamento final.

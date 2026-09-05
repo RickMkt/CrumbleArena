@@ -1,7 +1,7 @@
 # Inventario de assets
 
-Estado: inventario preliminar. Nenhum asset foi importado para o Roblox. Nenhum arquivo
-foi copiado para este repositorio.
+Estado: inventario ativo. Os assets usados no lobby estao registrados nas secoes 7 a 11.
+Nenhum arquivo bruto de pacote foi copiado para este repositorio.
 
 Este documento cobre apenas os assets relevantes para o Crumble Arena. O acervo completo,
 com 77 pacotes catalogados e 21 ingeridos, vive no SkillLab, em
@@ -170,7 +170,7 @@ em `Workspace.CrumbleArena.Lobby.ImportedAssets` e auditados antes de qualquer u
 | block-bits | 99205119436068 | KayKit Block Bits 1.0 FREE | CC0 verificada | nenhum | usado |
 | forest-nature-pack | 111025409160294 | KayKit Forest Nature Pack | CC0 verificada | nenhum | usado |
 | prototype-bits | 78867862192359 | KayKit Prototype Bits | CC0 verificada | nenhum | usado |
-| platformer-pack | 140612564742843 | KayKit Platformer Pack | CC0 verificada | nenhum | nao inserido |
+| platformer-pack | 140612564742843 | KayKit Platformer Pack | CC0 verificada | nenhum | biblioteca de referencia em Y = -600 |
 | board-game-bits | 97315101901186 | KayKit Board Game Bits | CC0 verificada | nenhum | fora de escopo |
 
 Auditoria executada sobre os tres pacotes inseridos: `LuaSourceContainer`, `RemoteEvent`,
@@ -281,7 +281,10 @@ tras.
 
 `Workspace.CrumbleArena.Lobby.ImportedAssets.AssetAuditRecords` guarda um marcador por
 decisao de asset. Cada marcador e uma Folder vazia cujo conteudo esta no nome e nos
-atributos `Situacao`, `RestauradoEm` e `Observacao`.
+atributos. A estrutura atual tem 13 marcadores de decisao e uma pasta de agrupamento,
+`RejectedSearchResults`. Por isso uma contagem recursiva de Folders retorna 14, enquanto
+uma contagem apenas dos filhos imediatos retorna 11. A pasta de agrupamento nao representa
+uma decisao e nao deve receber `Situacao`.
 
 | Marcador | Situacao |
 | --- | --- |
@@ -300,8 +303,11 @@ atributos `Situacao`, `RestauradoEm` e `Observacao`.
 | `RejectedSearchResults.Rejected_BrainrotsFlags` | recusado na busca |
 
 **Estas pastas sao registro, nao lixo.** Elas sao vazias de proposito. Uma limpeza
-automatica de pastas vazias na sessao 005 apagou as 14 e elas tiveram que ser recriadas.
-A pasta pai carrega o atributo `Proposito` avisando disso.
+automatica de pastas vazias na sessao 005 apagou a estrutura e ela teve que ser recriada.
+Os documentos antigos chamavam tudo de 14 marcadores; a conferencia de 2026-09-05 mostrou
+que o numero correto e 13 marcadores mais uma pasta de agrupamento. Nao ha evidencia para
+inventar tres registros ausentes. A pasta pai carrega o atributo `Proposito` avisando para
+nao apagar pastas vazias.
 
 ### Nota sobre os pacotes do inventario
 
@@ -311,3 +317,21 @@ pacotes completos. Medido na sessao 004: `forest-nature-pack` tem 5 malhas, nao 
 biblioteca util no Roblox e de 25 malhas distintas, e nao das centenas que os pacotes
 originais contem no acervo SkillLab. Subir o resto exige importacao manual pelo Studio,
 porque nao existe caminho por codigo, conforme ja registrado no SkillLab.
+
+## 11. Art pass de 2026-09-05
+
+Busca real feita com `search_asset` no Studio:
+
+| Termo | Escopo | Resultado | Decisao |
+| --- | --- | --- | --- |
+| `platformer-pack` | inventario do usuario | 1, Asset ID `140612564742843`, `KittyPatife` | inserido em quarentena e aprovado |
+| `forest-nature-pack` | inventario do usuario | 1, Asset ID `111025409160294`, `KittyPatife` | ja existia na biblioteca |
+| `stylized low poly rock` | Creator Store, gratuito | 10 | recusados por origem e descricao insuficientes |
+| `low poly flags` | Creator Store, gratuito | 10 | recusados; dois resultados mencionavam `DependencyInjector` |
+
+O `platformer-pack` inserido tem 8 `MeshPart` e 0 scripts, remotes, eventos, Tools,
+prompts, sons, GUIs ou decais. Ele ficou ancorado, sem colisao, toque ou query, em
+`ImportedAssets.platformer-pack` a `Y = -600`. Nenhuma das oito malhas foi colocada no
+lobby visivel porque a combinacao de textura azul e branca nao melhorava a composicao.
+O modelo carrega os atributos `AssetId`, `Creator`, `Package`, `License`, `ImportedBy`,
+`ImportedOn` e `Usage`.

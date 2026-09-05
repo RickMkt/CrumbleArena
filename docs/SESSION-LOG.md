@@ -760,3 +760,75 @@ emendas do `PathSocial` que o personagem atravessa andando, sem pular.
 ### Bloqueio
 
 `Ctrl + S` das seis correcoes. Sem isso elas se perdem.
+
+---
+
+## Sessao 009, 2026-09-05: art pass exclusivo do Codex
+
+**Objetivo:** transformar o centro e a apresentacao do lobby sem tocar em `src/`, musica,
+SFX, GUI de runtime ou sistemas pertencentes ao Claude.
+
+### Preparacao
+
+O checkout canonico estava limpo em `master`; foi criada a branch solicitada
+`feat/lobby-art-pass`. O worktree do Claude permaneceu em
+`C:\Users\ricka\Desktop\CrumbleArena-claude`, branch `feat/lobby-runtime`.
+
+Place confirmado: `CrumbleArena.rbxl`, modo Edit, raiz `Workspace.CrumbleArena`. O arquivo
+salvo tinha 321.199 bytes, data 2026-09-05 13:23. Backups anteriores permaneceram somente
+leitura. Cinco capturas iniciais registraram norte, sul, leste, oeste e a vista do spawn.
+
+### Alteracoes aplicadas no Studio
+
+1. `CentralPlaza.CrumbleCore`: 7 fissuras assimetricas, 5 lajes deslocadas, 4 fragmentos
+   de bloco suspensos e um brilho interno. A fonte foi preservada e integrada ao conceito
+   "o chao e a arma".
+2. Fonte recolorida para pedra fria, agua ciano controlada e vegetacao coerente com a
+   paleta. Nenhuma colisao nova.
+3. Placas de Training e Parkour alteradas de `PRACTICE ZONE` e `WARM-UP ROUTE` para
+   `COMING SOON`.
+4. `Tree_20` deslocada para liberar a leitura dos dois cards de Gamepasses.
+5. 238 propriedades `TopSurface = Studs` sem efeito em `SmoothPlastic` removidas. Studs
+   visiveis em `Plastic` foram preservados.
+6. Iluminacao refinada e sincronizada com `tools/rebuild/04-ApplyEnvironment.luau` e
+   `LOBBY-BUILD-PARAMS.md`.
+
+### Creator Store e assets
+
+Busca real com `search_asset`: 1 resultado para `platformer-pack` no inventario, 1 para
+`forest-nature-pack`, 10 resultados publicos para `stylized low poly rock` e 10 para
+`low poly flags`. Os publicos foram recusados por origem fraca; dois resultados de
+bandeira mencionavam `DependencyInjector`.
+
+O `platformer-pack`, Asset ID `140612564742843`, `KittyPatife`, KayKit CC0, foi inserido
+em quarentena. Auditoria: 8 MeshParts e 0 scripts, remotes, eventos, Tools, prompts, sons,
+GUIs ou decais. Ficou em `ImportedAssets` a `Y = -600`, ancorado e sem colisao. Nenhuma
+malha foi usada visivelmente porque a textura azul e branca nao melhorava a cena.
+
+### Inconsistencia dos marcadores
+
+O Place tem 13 marcadores de decisao e uma pasta de agrupamento chamada
+`RejectedSearchResults`. Contagem recursiva: 14 Folders; contagem de filhos imediatos: 11.
+A pasta de agrupamento nao e um marcador e por isso nao tem `Situacao`. A documentacao foi
+corrigida sem inventar registros ausentes.
+
+### Validacao antes do checkpoint
+
+| Teste | Resultado |
+| --- | --- |
+| BaseParts no lobby | 1.809, incluindo 8 da biblioteca em Y = -600 |
+| Pecas nao ancoradas | 0 |
+| Scripts e remotes no lobby | 0 e 0 |
+| Studs sem efeito em SmoothPlastic | 0 |
+| Colisores invisiveis inesperados | 0 |
+| `CrumbleCore` | 37 descendentes, 33 BaseParts, 0 colisao |
+| Capturas comparativas | centro, iluminacao, Training, Parkour e Gamepasses |
+
+O Output registra apenas uma tentativa do Assistant de ler `Lighting.Technology`,
+propriedade protegida. Nao e erro de jogo.
+
+### Bloqueio
+
+As alteracoes do art pass estao na memoria do Studio e aguardam `Ctrl + S` manual. Depois
+do save ainda faltam o teste descartavel dos scripts de rebuild, o Play test final e as
+capturas finais.

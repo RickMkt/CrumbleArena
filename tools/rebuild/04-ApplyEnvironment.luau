@@ -26,18 +26,18 @@ antes.OutdoorAmbient = tostring(Lighting.OutdoorAmbient)
 -- ============================================================
 -- iluminacao
 -- ============================================================
--- Tarde ensolarada e quente. Os numeros vieram de tentativa e erro em captura:
--- Brightness 2.9 lavava a cena, e ExposureCompensation negativo deixava tudo cinza.
-Lighting.ClockTime = 14.6
-Lighting.GeographicLatitude = 14
-Lighting.Brightness = 2.4
-Lighting.ExposureCompensation = 0.05
-Lighting.Ambient = Color3.fromRGB(102, 106, 118)
-Lighting.OutdoorAmbient = Color3.fromRGB(158, 164, 176)
-Lighting.EnvironmentDiffuseScale = 0.68
-Lighting.EnvironmentSpecularScale = 0.22
+-- Tarde clara com saturacao controlada. Estes valores foram aprovados por captura
+-- comparativa no art pass de 2026-09-05.
+Lighting.ClockTime = 14.2
+Lighting.GeographicLatitude = 18
+Lighting.Brightness = 2.2
+Lighting.ExposureCompensation = -0.02
+Lighting.Ambient = Color3.fromRGB(92, 98, 112)
+Lighting.OutdoorAmbient = Color3.fromRGB(146, 156, 172)
+Lighting.EnvironmentDiffuseScale = 0.62
+Lighting.EnvironmentSpecularScale = 0.18
 Lighting.GlobalShadows = true
-Lighting.ShadowSoftness = 0.24
+Lighting.ShadowSoftness = 0.32
 
 local function pegar(classe: string, nome: string): any
 	local e = Lighting:FindFirstChildOfClass(classe)
@@ -51,33 +51,33 @@ end
 
 local sky = pegar("Sky", "LobbySky")
 sky.CelestialBodiesShown = true
-sky.SunAngularSize = 12
+sky.SunAngularSize = 9
 sky.MoonAngularSize = 8
 sky.StarCount = 0
 
 local atm = pegar("Atmosphere", "LobbyAtmosphere")
-atm.Density = 0.22
-atm.Offset = 0.05
-atm.Color = Color3.fromRGB(226, 232, 224)
-atm.Decay = Color3.fromRGB(122, 168, 214)
-atm.Glare = 0.1
-atm.Haze = 1.4
+atm.Density = 0.16
+atm.Offset = 0.03
+atm.Color = Color3.fromRGB(220, 232, 238)
+atm.Decay = Color3.fromRGB(132, 172, 210)
+atm.Glare = 0.02
+atm.Haze = 0.8
 
 local bloom = pegar("BloomEffect", "LobbyBloom")
 -- bloom minimo e regra do projeto, nao gosto pessoal
-bloom.Intensity = 0.2
-bloom.Size = 28
-bloom.Threshold = 2.0
+bloom.Intensity = 0.12
+bloom.Size = 20
+bloom.Threshold = 1.9
 
 local sun = pegar("SunRaysEffect", "LobbySunRays")
-sun.Intensity = 0.03
-sun.Spread = 1.0
+sun.Intensity = 0.018
+sun.Spread = 0.85
 
 local cc = pegar("ColorCorrectionEffect", "LobbyGrade")
 cc.Brightness = 0.0
-cc.Contrast = 0.15
-cc.Saturation = 0.16
-cc.TintColor = Color3.fromRGB(255, 252, 246)
+cc.Contrast = 0.10
+cc.Saturation = 0.08
+cc.TintColor = Color3.fromRGB(255, 250, 244)
 
 -- DepthOfField nao pode ficar ligado durante a jogabilidade
 local dof = Lighting:FindFirstChildOfClass("DepthOfFieldEffect")
@@ -96,9 +96,9 @@ if not nuvens then
 	nuvens.Parent = workspace.Terrain
 end
 nuvens.Name = "LobbyClouds"
-nuvens.Cover = 0.55
-nuvens.Density = 0.78
-nuvens.Color = Color3.fromRGB(255, 254, 250)
+nuvens.Cover = 0.42
+nuvens.Density = 0.62
+nuvens.Color = Color3.fromRGB(255, 253, 248)
 nuvens.Enabled = true
 
 -- ============================================================

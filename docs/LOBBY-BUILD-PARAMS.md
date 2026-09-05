@@ -44,8 +44,11 @@ Discos concentricos, todos com topo entre `Y = 0.5` e `Y = 0.9`.
 | PlazaRingInner | 15 |
 | PlazaMedallion | 11 |
 
-Emblema do bloco rachado no centro, com 6 fissuras rentes ao piso. Diametro util da praca:
-84 studs.
+O centro usa a composicao `CentralPlaza.CrumbleCore`, integrada a fonte existente. O
+emblema tem 7 fissuras assimetricas, 5 lajes deslocadas com studs e um bloco de 4
+fragmentos suspenso sobre a agua. As fissuras e lajes nao tem colisao. A fonte permanece
+em `CentralPlaza.CentralFountain` e carrega o atributo `IntegratedConcept = CrumbleCore`.
+Diametro util da praca: 84 studs.
 
 `LobbySpawn` e um `SpawnLocation` de 12 x 0.2 x 12 em `(0, 0.90, -18)`, invisivel, ancorado,
 com colisao, `Neutral = true`, `Duration = 0`. A orientacao identidade faz o personagem
@@ -125,7 +128,13 @@ Isso e o que garante o criterio de nenhum ponto exigir pulo.
 
 ## Parkour
 
-Volta fechada de 13 plataformas em circulo, centro `(78, 60)`, raio 15.
+O percurso abaixo esta adiado em `ServerStorage.DeferredLobbyAreas.Parkour`, conforme
+D-014. Ele nao faz parte do lobby ativo. No lugar existe o ponto compacto
+`Areas.ParkourPoint`, com placa `PARKOUR / COMING SOON`, tres blocos de leitura visual e
+um arco sem colisao.
+
+Conteudo preservado, para referencia de restauracao: volta fechada de 13 plataformas em
+circulo, centro `(78, 60)`, raio 15.
 
 - alturas de 4 a 14, seguindo `4 + 10 * sin(pi * i / 13)`
 - vao maximo entre plataformas: 7.2 studs
@@ -136,7 +145,8 @@ Volta fechada de 13 plataformas em circulo, centro `(78, 60)`, raio 15.
 
 ## Seguranca
 
-- 36 segmentos de barreira invisivel em anel, raio 124, altura 18
+- 36 segmentos de barreira invisivel em anel, raio 124, altura 26
+- `Safety.FallZone`, altura 4, como volume de seguranca complementar
 - `workspace.FallenPartsDestroyHeight = -240`, que e o respawn, sem nenhum script
 - 4 `Seat` na area social, todos a pelo menos 21 studs de qualquer placa de caminho
 
@@ -144,22 +154,25 @@ Volta fechada de 13 plataformas em circulo, centro `(78, 60)`, raio 15.
 
 | Propriedade | Valor |
 | --- | --- |
-| Brightness | 2.9 |
-| ClockTime | 13.6 |
-| GeographicLatitude | 24 |
-| Ambient | 84, 88, 98 |
-| OutdoorAmbient | 142, 148, 158 |
-| ExposureCompensation | -0.05 |
+| Brightness | 2.2 |
+| ClockTime | 14.2 |
+| GeographicLatitude | 18 |
+| Ambient | 92, 98, 112 |
+| OutdoorAmbient | 146, 156, 172 |
+| ExposureCompensation | -0.02 |
 | GlobalShadows | true |
-| ShadowSoftness | 0.35 |
-| EnvironmentDiffuseScale | 0.55 |
-| EnvironmentSpecularScale | 0.25 |
-| Bloom Intensity / Size / Threshold | 0.35 / 18 / 1.7 |
-| SunRays Intensity | 0.02 |
-| Atmosphere Density / Haze / Glare | 0.11 / 0.5 / 0 |
-| Atmosphere Color | 222, 232, 244 |
-| Atmosphere Decay | 170, 198, 228 |
-| ColorCorrection Saturation / Contrast | 0.16 / 0.09 |
+| ShadowSoftness | 0.32 |
+| EnvironmentDiffuseScale | 0.62 |
+| EnvironmentSpecularScale | 0.18 |
+| Bloom Intensity / Size / Threshold | 0.12 / 20 / 1.9 |
+| SunRays Intensity / Spread | 0.018 / 0.85 |
+| Atmosphere Density / Offset / Haze / Glare | 0.16 / 0.03 / 0.8 / 0.02 |
+| Atmosphere Color | 220, 232, 238 |
+| Atmosphere Decay | 132, 172, 210 |
+| ColorCorrection Saturation / Contrast | 0.08 / 0.10 |
+| ColorCorrection TintColor | 255, 250, 244 |
+| Cloud Cover / Density / Color | 0.42 / 0.62 / 255, 253, 248 |
+| Sky SunAngularSize | 9 |
 
 Valores originais do template, para reverter: `Brightness 3`, `ClockTime 14.5`,
 `Ambient e OutdoorAmbient 70, 70, 70`, `Bloom 1 / 24 / 2`, `Atmosphere Density 0.3`,
