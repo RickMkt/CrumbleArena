@@ -62,12 +62,30 @@ decisao foi executada de verdade, nada foi apagado.
 
 | Verificacao | Resultado |
 | --- | --- |
-| `stylua --check src` | 0 divergencias |
+| `stylua --check src` | **nao vale, ver abaixo** |
 | `selene src` | 0 erros, 0 avisos |
 | `selene tests` | 0 erros, 0 avisos |
 | `rojo build` | compila |
 | `lune run tests/GameConfig.spec.luau` | 9 de 9 passam |
 | Place salvo | 2026-09-05 13:23, 321.199 bytes |
+
+### Correcao de 2026-09-05, noite: o portao de formatacao nunca existiu
+
+O `stylua` desta maquina foi instalado por `cargo install` sem a feature `luau`, e por isso
+nao consegue parsear a linguagem do projeto. Apontado num arquivo qualquer de `src` ou de
+`tools`, ele falha com erro de parse na primeira anotacao de tipo. Apontado numa **pasta**,
+ele nao reporta nada e sai com codigo 0.
+
+Foi assim que passou batido. O teste que revelou: uma linha propositalmente mal formatada
+foi acrescentada a um arquivo em `tools/`, e `stylua --check tools/` continuou saindo com
+codigo 0.
+
+Consequencia: **toda afirmacao de formatacao verificada nesta auditoria e nos commits
+`8ecd66f` e `0939dd4` nao tem lastro.** O que continua valendo e o `selene`, que parseia
+Luau corretamente, o `lune` e o `rojo build`.
+
+Correcao possivel: reinstalar com `cargo install stylua --features luau`. Enquanto isso nao
+for feito, o comando de formatacao do `CLAUDE.md` nao deve ser citado como evidencia.
 
 O place salvo as 13:23 e posterior as seis correcoes da auditoria do lobby, entao elas
 estao em disco. Aquela pendencia esta fechada.

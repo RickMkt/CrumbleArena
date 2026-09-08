@@ -1,3 +1,15 @@
+# Atualizacao de transicao, 2026-09-07
+
+O detalhamento abaixo e o plano historico. D-008 e D-025 revogam referencias a
+portal e remontagem integral obrigatoria do lobby. Nao usar esses criterios antigos
+para iniciar redesign. Current-state e o estado recente; fases nao foram revalidadas aqui.
+
+Proximo marco proposto, sem features: baseline revisada, checkpoint aprovado,
+experiencia privada/IDs, dois colaboradores confirmados, writer ao vivo e gate Rojo.
+Aceite: os dois abrem o mesmo Place, entendem handoff, nao ha dupla sincronizacao,
+backup recuperavel e codigo/GUI sem duplicacao. Entao retomar fases de gameplay.
+Publicacao privada de colaboracao nao equivale ao lancamento da fase7.
+
 # Roadmap
 
 Uma fase so termina quando o criterio de aceite dela e demonstrado com evidencia. Nao

@@ -11,11 +11,11 @@ vao reaproveitar.
 
 ## Estado atual
 
-Fase 1 em andamento. Nao existe gameplay implementado. Existe a estrutura do repositorio,
-os contratos compartilhados, a documentacao de direcao e o **lobby construido no Studio**,
-com 1291 pecas, navegavel e testado. O place ainda nao foi salvo em arquivo. Ver
-[docs/ROADMAP.md](docs/ROADMAP.md) para o que vem depois e
-[docs/SESSION-LOG.md](docs/SESSION-LOG.md) para o que foi feito quando.
+Leia [AGENTS.md](AGENTS.md), [CURRENT-STATE](docs/CURRENT-STATE.md) e
+[HANDOFF](docs/HANDOFF.md). Lobby existe no Studio; clone Git nao contem RBXL.
+Colaboracao privada ainda depende de aprovacao e configuracao:
+[guia dos dois desenvolvedores](docs/COLLABORATION.md).
+Nao conectar Rojo antes do gate documentado. Somente um AI Studio Writer por vez.
 
 ## Comandos
 
@@ -25,7 +25,7 @@ Build de verificacao, gera um place local e nao e versionado:
 rojo build -o build.rbxl
 ```
 
-Sincronizar com o Studio:
+Somente apos gate Rojo, checkpoint e grant de writer; nao executar agora:
 
 ```bash
 rojo serve

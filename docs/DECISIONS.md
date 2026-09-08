@@ -1,4 +1,23 @@
-﻿# Decisoes
+## D-024, 2026-09-07: colaboracao com writer unico e cloud privado
+
+Direcao aprovada pelo pedido: Team Create para mapa; GitHub/Rojo para codigo e docs;
+RBXL como checkpoint. Implantacao depende de aprovacao, IDs e gate Rojo.
+ONLY ONE AI STUDIO WRITER AT A TIME inclui Rojo, plugins e MCP em todos os hosts.
+Registro local nao e lock: grant humano ao vivo e ACK de ambos, conforme COLLABORATION.
+Nenhuma publicacao, commit ou push autorizado por esta decisao. D-013 permanece
+valida para o Place local ate aceite da migracao; D-017 so muda apos gate tecnico.
+
+## D-025, 2026-09-07: direcao atual de refinamento do lobby
+
+Nao reconstruir macroestrutura. Studs sutis, decoracao intencional, sem portais ou
+map vote fisico (futuro via GUI). Preservar Market, antigo Pip's, atual CRUMBLE SUPPLY,
+com linguagem de ferramentas/pa/picareta. Community discreta, nao mercado adicional.
+Leaderboard: MOST WINS e MOST KOs paineis; MOST DONATES unico avatar.
+Preview nao autoriza sistema de doacoes. Cobertura simples, sem Hall gigante.
+Propostas V2/roadmap de remontagem integral nao autorizam redesign.
+A implementacao31 existe, mas aceitacao visual final continua do Henrique.
+
+# Decisoes
 
 Registro de decisao. Cada entrada diz o contexto, a escolha, o motivo e a consequencia.
 Decisao registrada nao se muda em silencio: cria-se uma nova entrada que revoga a antiga.
@@ -401,6 +420,106 @@ da aberto e nao mede nada. Depois da correcao: 0,00 nos 8 caminhos.
 **Consequencia:** ninguem deve "consertar" essa sobreposicao numa proxima varredura de
 D-015. `tools/fixes/01-ClosePathSeams.luau` guarda o comprimento original de cada peca em
 atributo e traz a reversao escrita no arquivo.
+
+---
+
+## D-021, 2026-09-06: stud vem de camada de placas, porque o terreno e wedge
+
+**REVOGADA no mesmo dia pela D-023.** A premissa estava errada: WedgePart aceita stud,
+so que na face que aponta para cima, que nestas pecas nao e a `TopSurface`. Fica
+registrada porque o erro e instrutivo, nao porque a decisao vale.
+
+**Contexto:** o Rick pediu o mapa inteiro em textura de lego. A D-016 ja mandava aplicar
+stud por criterio, mas ela foi escrita quando o lobby era feito de `Part`. O lobby
+reconstruido pelo Astra tem 303 `WedgePart` em 663 pecas, e a ilha, a praca, os caminhos e
+os terracos sao todos wedge. `WedgePart` nao renderiza stud em nenhuma face, entao trocar
+o material sozinho deixava o mundo liso e o pedido nao era atendido.
+
+**Decisao:** o stud do chao vem de uma camada separada de placas de 8 studs, em
+`Architecture.LegoPlating`, assentada sobre o chao que e mesmo plano. O terreno wedge
+continua embaixo, so trocando de material.
+
+**Como se decide onde entra placa:** sonda no centro da celula mais os quatro cantos a 3.6
+studs. A placa so entra se o centro bate em peca de chao e pelo menos tres cantos batem na
+mesma altura, com tolerancia de 0.05. Rampa, degrau e borda reprovam sozinhos, sem precisar
+de lista de excecao, entao a silhueta continua sendo a do terreno.
+
+**Descartado:** trocar o terreno wedge por blocos. Seria refazer a ilha inteira do Astra
+para ganhar textura, e o custo nao paga. Descartado tambem passo de 12 studs: com quatro
+cantos obrigatorios so 37 de 138 celulas passavam, porque toda emenda de caminho reprovava
+a celula inteira.
+
+**Consequencia:** 218 placas e 34 ladrilhos, e o chao sobe 0.3 onde ha placa e 0.24 no
+terraco do mercado. Isso cria degrau de 0.24 nas emendas, medido e bem abaixo do limite de
+1.5 da D-016. A camada some inteira apagando a pasta, e cada peca de material trocado
+guarda `PreLegoMaterial` e `PreLegoTopSurface` em atributo.
+
+**Evidencia:** 312 superficies com stud, degrau maximo de 0.24 na rampa `MarketRise` e
+dentro do terraco. Ver `tools/rebuild/08-LegoPlating.luau`.
+
+---
+
+## D-022, 2026-09-06: a pose do lojista e escrita peca a peca, sem animacao
+
+**Contexto:** o rig do lojista usa `AnimationConstraint` com `BallSocketConstraint`, nao
+`Motor6D`, e as 16 pecas estao ancoradas. Nao existe `Animate` no rig, e a regra da sessao
+proibe inventar Asset ID, entao nao ha animacao de catalogo para chamar.
+
+**Decisao:** a pose e gravada nos `CFrame` das pecas. Constraint nao arrasta peca ancorada,
+entao a pose vale em Edit e em Play, sem script e sem Asset ID.
+
+**Como se faz sem quebrar:** o ombro e lido uma unica vez, no neutro, e o cotovelo e
+transportado pelo primeiro giro. Recalcular o ombro como "topo do braco" depois de girar
+quebra a pose, porque passados 90 graus o topo local do braco ja aponta para baixo e o pivo
+vira o punho. O sinal do giro em torno de `LookVector` foi medido, nao deduzido: positivo
+leva o braco para dentro do corpo.
+
+**Consequencia:** o lojista acena parado. Quando existir sistema de animacao no jogo, esta
+pose vira o estado de repouso e nao atrapalha. Ver `tools/rebuild/07-PoseShopkeeper.luau`,
+que confere o proprio resultado com dois `assert`.
+
+---
+
+## D-023, 2026-09-06: stud vai na face que aponta para cima, nao na `TopSurface`
+
+**Revoga a D-021**, escrita alguma horas antes no mesmo dia, e corrige a D-016.
+
+**Contexto:** a D-016 dizia que stud vai em `TopSurface`. Isso vale enquanto o mundo e
+feito de `Part` sem rotacao, que era o caso quando ela foi escrita. O lobby reconstruido
+pelo Astra e feito de `WedgePart` girados. Medido em `IslandGrass.Face1_1`:
+
+```text
+Size        = (2.00, 23.31, 30.36)
+RightVector = (0, -1, 0)
+```
+
+O eixo X local da peca aponta para baixo no mundo, entao a face virada para o ceu e a
+`LeftSurface`. Na peca vizinha `Face1_2` o `RightVector` vale `(0, 1, 0)` e a face de cima
+e a `RightSurface`. Elas alternam ao longo da ilha inteira.
+
+**O erro que isso causou:** como eu so escrevia em `TopSurface`, a propriedade gravava e
+nada aparecia. Concluir dai que `WedgePart` nao aceita stud foi um salto sem teste, e a
+partir dele construi uma camada de 1.317 placas por cima do terreno. A camada funcionava,
+mas tinha 0.3 de espessura e virava prateleira em toda borda: de longe a ilha lia como
+tapete recortado. Quem apontou foi o Rick, olhando, antes de qualquer medicao minha.
+
+**Decisao:** a regra deixa de ser um nome de propriedade. Recebe stud a face cuja normal
+aponta para cima com `Y > 0.9`, seja ela `Top`, `Left`, `Right`, `Bottom`, `Front` ou
+`Back`. O limite de 3 studs da D-016 continua valendo, mas medido nos dois lados
+perpendiculares a essa face, e nao em `Size.X` e `Size.Z`.
+
+**Consequencia:** 384 superficies com stud, nenhuma peca nova, nenhuma camada, e o
+contorno poligonal do terreno preservado inteiro. O lobby caiu de 1.887 para 793
+BaseParts. `tools/rebuild/08-LegoPlating.luau` foi apagado e substituido por
+`08-LegoSurfacePass.luau`. O ladrilho do terraco do mercado, que era o ultimo tapete que
+restava, tambem saiu, e o patio desceu 0.24 para se apoiar na laje de verdade.
+
+**Como a auditoria confere:** contar faces com `Studs` cuja normal NAO aponta para cima.
+O esperado e zero. Essa contagem e o que teria denunciado o erro original no mesmo dia.
+
+**Nao verificado:** as 33 faces nessa condicao dentro de `Information` nao foram
+corrigidas. Sao superficies padrao do Roblox e outro agente estava editando aquela pasta
+no momento.
 
 ---
 

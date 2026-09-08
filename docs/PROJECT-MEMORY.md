@@ -1,3 +1,10 @@
+# Atualizacao de colaboracao, 2026-09-07
+
+AGENTS.md e a entrada principal. COLLABORATION.md define o writer exclusivo e a
+migracao planejada para cloud privado + Git/Rojo. D-024/D-025 prevalecem sobre
+instrucoes historicas conflitantes. Nenhuma migracao/publicacao executada.
+Caminhos absolutos abaixo sao do host de Henrique, nao requisito de outro clone.
+
 # Memoria do projeto
 
 Fonte canonica das regras permanentes do Crumble Arena. O que esta aqui vale entre

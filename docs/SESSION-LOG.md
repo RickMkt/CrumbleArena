@@ -1,4 +1,146 @@
+# 2026-09-07: preparacao documental para dois desenvolvedores
+
+Auditoria read-only do repo: feat/lobby-art-pass/5511a0c; master e outro worktree
+feat/lobby-runtime existentes; remote ausente. Config Rojo nao representa Place completo
+e difere do caminho documentado de UIController. RBXL853106 bytes, hash registrado
+em CURRENT-STATE; nao inferida equivalencia com memoria.
+AGENTS principal, CLAUDE redirecionado, CURRENT resumido com historico preservado,
+COLLABORATION/HANDOFF/template/KNOWN-ISSUES e auditoria criados.
+VISION e LOBBY-DIRECTION cobertos por fontes existentes, sem documentos duplicados.
+Regras D-024/D-025 e ROADMAP/README atualizados. Nenhuma escrita no Studio, src,
+config Rojo, commit, push ou publicacao. Preparacao documental, nao implantacao.
+Aguardando revisao de Henrique. Diff da tarefa em docs/reviews/COLLABORATION-TASK.patch.
+
 # Log de sessoes
+
+## Vegetacao, espacamento corretivo
+
+Pedido do Rick: vegetacao colada e mal distribuida. Retomada em nova instancia
+Studio,1129 pecas herdadas. Script28 redistribuiu arvores,arbustos,tufos e pedras,
+abriu borda da fogueira e ocupou lateral Information/Outlook. Quantidade inalterada.
+Capturas SPACING_SOCIAL_AFTER e SPACING_INFORMATION_AFTER. Apoio verificado por
+raycast restrito ao terreno/arquitetura; nao foi teste de caminhada. Backup integral
+em AstraVegetationSpacing28. Studio Edit,sem salvar.
+
+
+## 2026-09-07, decoracao selecionada aplicada
+
+Usuario autorizou uso dos modelos separados e bandeiras no Market. Script27
+aplicado com snapshot integral e preservacao das pecas substituidas.39 modelos
+novos,65 BaseParts; saldo+28 para1135 no lobby. Quatro arvores e oito arbustos
+substituidos,20 tufos e4 grupos de pedra localizados,caixote e duas bandeiras.
+Capturas mostraram bandeiras encobertas: avancadas1.2 studs; arvore2 deslocada
+para longe da cerca. Novas pecas sem colisao/toque/query e todas ancoradas.
+Sem scripts novos. Estruturas e rotas mantidas por comparacao com snapshot.
+Nao realizado novo Play/mobile. Sem save,publicacao,commit ou push.
+
+
+## 2026-09-07, selecao visual do Rick
+
+Doze capturas indicaram os assets preferidos do usuario. Criada plataforma separada
+`UserSelectedAssets` com24 clones e uma referencia de cachoeira, sem apagar ou mover
+catalogos anteriores. Selecoes carregam origem/status e nao sao aprovacao de producao.
+Etiquetas corrigidas para leitura dos dois lados. Plataforma118 BaseParts,24 modelos,
+zero nao ancoradas/scripts/remotes/packages, assets sem colisao/toque. Cachoeira nao
+duplicada por depender de efeitos e attachments. Script26 versionado. Studio Edit,
+sem save/publicacao.
+
+
+## 2026-09-07, curadoria visual do catalogo
+
+Pedido: separar tudo que vale considerar para decoracao/desenvolvimento, mantendo o
+restante para revisao. Criada plataforma `CuratedLobbyAssets` com12 clones sanitizados
+e organizados por uso. Nenhum original movido, apagado ou alterado geometricamente;
+originais selecionados receberam apenas os atributos `CuratedCandidate` e
+`RecommendedUse`. Plataforma tem93 BaseParts, zero nao ancoradas/scripts/remotes/
+packages, assets sem colisao/toque/query. `CrumbleArena`1622->1715,
+fingerprintc84e545b->c32b9c86. Quadro de nota explica criterios e status nao aprovado.
+Script25 versionado. Capturas antes/depois reais. Studio Edit, sem save/publicacao.
+
+
+## 2026-09-07, Crumble Supply
+
+Pedido atual: toldo, fonte, R6, animacao, bau/picareta e novo nome. Studio reconectado
+em Edit; fingerprint24877fe4 estavel em duas leituras. Save posterior detectado e
+comunicado,739570 bytes/05:28:04,hash96D9A76E... preservado ate o fim.
+Scripts22/23/24 aplicados com backup Market integral e originais do toldo/rig em
+ServerStorage.AstraMarketDetailRollback. Capturas antes/depois reais na conversa.
+Toldo recebeu caimento segmentado e tecido, letras FredokaOne, nome CRUMBLE SUPPLY.
+Bau com fechadura para chegada; picareta apoiada pelo cabo. R6 nativo com uniforme
+autoral e aceno client-side proprio, sem scripts importados. Pesquisas Creator Store
+registradas no inventario; nenhum resultado externo novo usado.
+Lobby1094->1107,Market165->178,delta+13 (toldo+20,rig-7). Zero nao ancoradas/remotes/
+packages; um Script cosmetico proprio. Fingerprint final66eeda37. Play6/6 trechos R15
+sem pulo; aceno29 poses em4s,manga sem erro medido; Output vazio. Probe removida,Edit.
+Nao foi medido FPS mobile nem auditado z-fighting global. src sem alteracoes.
+Resultado visual mais legivel, ainda estilizado simples; nao replica fidelidade do
+render de referencia. Nao salvamos, publicamos ou fizemos commit/push.
+
+## 2026-09-07 — Market parcial
+
+Pedido especifico do anexo ca15b608. Studio Edit, branch feat/lobby-art-pass.
+Base anterior capturada; fundacao compactada com20 wedges em lugar de8, sem
+alterar topo3.2 nem rampa. AFTER da fundacao capturado de verdade.
+Continuacao: script21 criou20 BaseParts autorais para tapete/expositor/pa/picareta,
+moveu dois caixotes direitos e bandas, retirou MarketSupply_3 para rollback,
+moveu RepairModule_7 para apoio valido. Nenhum asset externo/script importado.
+1094 pecas no lobby,165 no Market,0 nao ancoradas. Captura depois dos equipamentos
+nao confirmada; testes finais pendentes. Nao declarar Market finalizado nem salvar.
+
+## 2026-09-06 — Limpeza corretiva da fogueira
+
+Reprovacao visual pelo usuario. Retomada confirmou1083 e fb13a35e duas vezes.
+Erro concreto nao detectado antes: fogueira com base Y1.757 para chao Y.6.
+Script19 abaixou conjunto1.157 e assentou pedras emY.52. Cortadas20 pecas do
+jardim, mantidas6 e arbustos deslocados para tras, sem invadir assentos/entrada.
+Tudo retirado foi preservado em AstraSocialCleanupRollback; nada destruido.
+Antes/depois real confirmado em nivel baixo. Play8/8 segmentos sem pulo passou.
+Probes removidas, Edit,1063 BaseParts,6aaeb951. Sem salvar, commit ou publicacao.
+
+## 2026-09-06 — Referencia visual da fogueira
+
+Retomada autorizada depois da confirmacao de writer unico. Duas leituras iniciais:
+1038 BaseParts, 71093913. Preservado snapshot em ServerStorage.AstraSocialReferenceRollback.
+Scripts16/17/18 aplicados: 26 meshes de paisagismo KayKit da biblioteca auditada,
+18 partes para duas lanternas autorais, uma origem nativa para elevar a chama.
+Materiais dos novos meshes sem textura de atlas, paleta verde RGB52,116,61 e pedra
+RGB121,132,139; nenhum material global alterado. Sem assets externos importados.
+Arbustos4 e tufos4 corrigidos sobre terracos. Nenhuma alteracao de praca, cerca ou barreira.
+Final1083 (+45), zero nao ancoradas, scripts, remotes e PackageLinks no lobby.
+Nova decoracao sem CanCollide/CanTouch/CanQuery. Fontes de meshes sem descendentes.
+Teste inicial falhou ao cruzar bancos e ficou comprometido por assento automatico.
+Reteste em percurso livre: 9/9 segmentos, JumpPower/JumpHeight0 e Jumping desativado;
+Seated desativado somente durante caminhada. 6/6 Seats: clones independentes, Seat:Sit.
+Testes removidos e retorno Edit. Output consultado vazio, nao prova ausencia global de bugs.
+Capturas: SOCIAL_REFERENCE_PASS_BEFORE, SOCIAL_GARDEN_AFTER, SOCIAL_GARDEN_PALETTE,
+SOCIAL_LANTERNS_AFTER, SOCIAL_PLAY_PLAYER_VIEW, SOCIAL_FINAL_PLAY.
+Imagens exibidas pelo MCP na conversa, nao arquivos PNG exportados.
+Fingerprint final fb13a35e; esta serializacao nao e a mesma da auditoria antiga da praca.
+Disco inalterado: 673654 bytes, 13:45:27, SHA724d8364692f11c0407145f7834d6174a2b0ed24eef62fb70370b0ebc19c0a82.
+Sem salvamento automatico, commit, push, publicacao ou alteracoes src.
+
+
+## 2026-09-06 — Social parcial e parada por escrita concorrente
+
+Usuario pediu fogueira, piso e arbustos. Studio CrumbleArena.rbxl passou de Play
+para Edit. Disco 673654 bytes, 13:45:27, SHA 724d8364692f11c0407145f7834d6174a2b0ed24eef62fb70370b0ebc19c0a82.
+Fingerprint 12143bd7 repetida, 844 BaseParts antes. Snapshot integral criado.
+Executados tools/rebuild/14-SocialFloorCleanup.luau e 15-SocialSeatingAndSupplies.luau.
+Onze recortes sobrepostos preservados fora da cena; 6 seats alinhados, 6 props adicionados.
+Props: proto_box 71764690630135 e proto_barrel 117416911463463 da biblioteca KayKit
+78867862192359 CC0, fontes com zero descendentes; troncos da fogueira do usuario
+reutilizados sem filhos/efeitos. Sem importacao externa. Capturas antes/depois reais.
+Antes de corrigir arbustos surgiu IslandFence (162 pecas) e mudanca em Boundaries,
+fora dos scripts desta tarefa. PARADA obrigatoria por writer concorrente.
+Nao houve testes Play finais, ajuste de arbustos ou salvamento. Nao considerar concluido.
+
+## 2026-09-06 — Astra Stage 4A e SE
+
+Uma substituicao localizada: 2 wedges por 4, recuo + patamar unico.
+842 -> 844 BaseParts; fingerprint e8607660 -> 12143bd7.
+Teste Play grama/praca em ambos sentidos sem pulo passou. Retorno a Edit.
+Originais preservadas, sem salvar Place, src intocado. Demais conexoes pendentes.
+Relatorio completo: docs/ASTRA-P1-STAGE4-SE-20260906.md.
 
 Uma entrada por sessao. Registra o que foi feito, o que foi validado com evidencia e o que
 ficou aberto.
@@ -832,3 +974,249 @@ propriedade protegida. Nao e erro de jogo.
 As alteracoes do art pass estao na memoria do Studio e aguardam `Ctrl + S` manual. Depois
 do save ainda faltam o teste descartavel dos scripts de rebuild, o Play test final e as
 capturas finais.
+
+## 2026-09-06, Astra, reconstrucao A2 e retomada da validacao
+
+Relatorio: `docs/UPDATE-A2-ASTRA-2026-09-06.md`. O estado antigo acima foi ultrapassado.
+Reconstrucao real no Place: ilha, praca, rampas, mercado, area social, informacao e Outlook.
+891 para 663 BaseParts. Backup anterior verificado por SHA-256 e rollback em ServerStorage.
+O save das 02:05:50 foi reaberto com 624 pecas; ultimos ajustes ainda nao foram salvos.
+
+Corrigidos a entrada diagonal da praca e o banco leste. Oito rigs sem pulo chegaram aos
+oito destinos; sete novos rigs sentaram por aproximacao, sem Seat:Sit. Dezessete segmentos
+da barreira passaram no teste desta reconstrucao. Probes removidos e retorno ao Edit.
+Ultimo Output vazio; musica carregada mas parada; warning de CrumbleUI nao reapareceu.
+Zero scripts/Remotes/Packages ativos no lobby. src/* intocado; sem commit/push/publicacao.
+
+Capturas reais exibidas na conversa. Nenhuma importacao externa nova nesta passagem.
+Procedencia das familias herdadas SummerLowPolyTree e LowPolyPineTree nao esta fechada;
+nao confundir ausencia de scripts com licenca comprovada. Ver secao 13 do inventario.
+O resultado e revisavel, nao A2 aprovado. Parar para Ctrl + S manual antes de outro passe.
+
+## 2026-09-06, Claude, cabana do mercado e textura lego no lobby
+
+Pedido do Rick: melhorar a cabana do `Market` com foco total nela, dar um rig ao lojista, e
+deixar o mapa inteiro em textura de lego. Referencias enviadas: bancas de feira de outros
+jogos, com toldo listrado, marca redonda brilhando no chao e letreiro flutuante.
+
+### O que a cabana era antes
+
+Pavilhao de 35 x 14 studs, telhado chapado de `Fabric` teal, balcao de 17 studs deslocado
+para o lado direito, parede do fundo de laje unica com o letreiro na frente, e o lojista
+parado no canto oeste, atras de uma prateleira, fora do campo de visao de quem chega.
+50 BaseParts.
+
+### O que ela virou
+
+198 BaseParts, banca de feira. Quatro postes sobre pes de pedra, toldo de sete faixas
+alternando creme e teal com stud no topo e bandos de altura alternada na barra, balcao de
+19 studs atravessado no eixo, parede do fundo em quatro fiadas, prateleira com nove caixas
+coloridas, duas lanternas, letreiro `MARKET` sobre o toldo e marca de atendimento de 54
+segmentos no chao. As duas placas de gamepass sairam da parede do fundo e viraram dois
+totens laterais, virados 33 graus para dentro.
+
+O lojista foi para o centro, atras do balcao, com o pe em Y 3.60 sobre o assoalho, rosto,
+bone de duas cores, avental, e o braco direito erguido em aceno.
+
+### Textura lego
+
+O lobby reconstruido pelo Astra tem 303 WedgePart em 663 pecas, e WedgePart nao renderiza
+stud. So trocar material nao entregava o pedido. A solucao foi em duas camadas: 532 pecas
+convertidas para `Plastic`, e depois 218 placas de 8 studs e 34 ladrilhos de 4 studs
+assentados sobre o chao que e mesmo plano. Rampa, degrau e borda ficam de fora de
+proposito, entao a silhueta continua sendo a do terreno.
+
+### Erros meus nesta sessao, e o que os denunciou
+
+| Erro | Como apareceu | Correcao |
+| --- | --- | --- |
+| Toldo em 18.6 graus, barra em Y 9.09 | a captura mostrou o lojista decapitado pelo toldo | 13.75 graus, barra em 10.97, bandos ate 9.64 |
+| Placas de gamepass com `CFrame.lookAt` no balcao | ficaram de perfil, quase 84 graus fora do eixo de chegada | direcao fixa, 33 graus para dentro |
+| Anel do chao com `CFrame.Angles(0, -a, 0)` | saiu em raios de sol, o lado maior do bloco seguia o raio | o angulo da tangente e `-(a + 90)` |
+| Marca de atendimento enterrada | o ladrilho novo subiu o piso para 3.44 e a marca ficou em 3.31 | marca reassentada em 3.53 |
+| Pose do lojista desmontada, duas vezes | o braco se soltou do ombro na captura | o ombro precisa ser lido uma vez, no neutro; recalcular depois do giro faz o pivo virar o punho |
+| Sinal do giro do braco | supus que positivo abria o braco | medido de 30 em 30: positivo leva para dentro. X local vai de 1.50 para 0.58, -0.09 e -0.34 |
+| Passo 12 studs na camada de placas | so 37 de 138 celulas passavam | passo 8 e tres cantos de quatro, 218 placas |
+| Xadrez com desvio 0.020 | o chao lia como tabuleiro | desvio reduzido a 35 por cento |
+
+### Falso positivo da propria auditoria, de novo
+
+A primeira sonda de degrau na aproximacao do mercado acusou 7.63. O raio vinha de cima e
+batia na barra do toldo, a 11.23 de altura, nao no chao. A D-019 manda dizer em que peca a
+sonda bateu, e foi isso que denunciou. Refeita ignorando o que nao e piso, a rampa
+`MarketRise` sobe do nivel 1.37 ao 3.20 com degrau maximo de 0.24, contra o limite de 1.5.
+
+### Validacao com evidencia
+
+| Verificacao | Resultado |
+| --- | --- |
+| BaseParts no lobby | 1.063 |
+| Pecas nao ancoradas | 0 |
+| Scripts e Remotes no lobby | 0 e 0 |
+| Colisores fantasma | 4 encontrados, 4 corrigidos |
+| D-015, blocos alinhados | 365 conferidos, 6 conflitos encontrados, 6 corrigidos |
+| Superficies com stud | 312 |
+| Materiais | Plastic 982, Neon 58, SmoothPlastic 23 |
+| Pecas da cabana sem contato com o resto | 0 em 176 |
+| Degrau maximo na rampa do mercado | 0.24 |
+| Degrau maximo dentro do terraco | 0.24 |
+
+Os quatro colisores fantasma eram os torsos dos dois rigs decorativos, o lojista e o avatar
+do leaderboard. Peca de corpo R15 nasce com `CanCollide` true e `CanQuery` false, que e
+exatamente o par que barra o jogador e some para a sonda. Os dois rigs sao enfeite, entao
+perderam a colisao.
+
+Tres dos seis conflitos de D-015 eram meus, suportes de prateleira coplanares com a fiada
+da parede. Os outros tres sao anteriores, o encosto dos bancos `Bench_West`, `Bench_East` e
+`ViewBench`. Todos recuados 0.03 a 0.04.
+
+### Nao verificado
+
+As capturas finais nao foram feitas: o `screen_capture` passou a dar timeout apos a
+correcao da pose, mesmo com `ViewportSize` em 1595 x 801 e com a camera obedecendo ao
+comando de posicionamento. As capturas intermediarias, com o toldo, o ladrilho e a ilha, sao
+reais e foram mostradas na conversa. O estado nao esta salvo em disco: falta `Ctrl + S`.
+# Refinamento visual do leaderboard, 2026-09-06
+
+Pedido mais recente adiou studs e priorizou leaderboard. Save anterior conferido:
+637249 bytes, 11:43:32. Copia da Information preservada em ServerStorage.
+Painel fisico com tres linhas, molduras teal, cobertura coordenada, fundo e placa
+para o avatar existente. Nenhum sistema de ranking implementado. Captura real
+Leaderboard_Refined exibida na conversa. Novas pecas sem colisao e ancoradas.
+Validacao estatica, sem novo Play test. Retorno em Edit, aguarda Ctrl + S.
+Script 11 registra operacao; nao certificado como rebuild integral.
+# Pavilhao dos Campeoes, 2026-09-06
+
+Save confirmado 12:30:14, 663790 bytes. Estrutura aberta construida na Information,
+com cobertura em duas aguas, quatro pilares, base de pedra e dois paineis fisicos.
+Avatar do primeiro colocado centralizado. MOST WINS e MOST KOs sao demonstrativos;
+atribuicao real de eliminacoes nao foi implementada. Piso existente inalterado.
+Rollback em ServerStorage.BeforeChampionsPavilion, sem apagar versao anterior.
+Play: rig com pulo desativado completou entrada, ambos os lados e saida.
+Zero scripts, remotes e partes nao ancoradas no lobby; contagem atual 827.
+Output retornou vazio. Probe removida; Studio Edit; falta Ctrl + S manual.
+Captura Pavilion_Front_Verify mostra os dois paineis e avatar. Sem mudancas src/.
+
+### Continuacao do mesmo dia: o chao, e um erro meu de premissa
+
+O Rick pediu para melhorar o chao e por textura de lego. Eu ja tinha resolvido isso de
+manha com uma camada de placas por cima do terreno, e a resposta certa era outra.
+
+Sequencia do erro, porque ela vale mais que o resultado:
+
+1. De manha concluí que `WedgePart` nao aceita stud. Eu tinha escrito em `TopSurface`,
+   nada apareceu, e generalizei sem testar as outras faces.
+2. Sobre essa premissa construi uma camada de placas. Ela passou por quatro versoes: 218
+   placas, depois 493 com inclinacao, depois 1.317 com passada de 2 studs, depois uma
+   tentativa de versao fina de 0.06.
+3. O Rick olhou e disse: nao e mais facil tirar essa camada e trabalhar com a de baixo?
+   Ele estava certo, e a foto que ele mandou mostrava o degrau de 0.3 em toda borda.
+4. Fui testar a premissa e ela caiu. `IslandGrass.Face1_1` tem `RightVector = (0,-1,0)`:
+   o eixo X local aponta para baixo, entao a face virada para o ceu e a `LeftSurface`. Na
+   peca vizinha e a `RightSurface`. Elas alternam.
+5. Stud na face certa: 384 superficies, zero peca nova, contorno poligonal intacto.
+
+O lobby foi de 1.887 para 793 BaseParts. As 1.317 placas e os 34 ladrilhos do terraco do
+mercado foram removidos.
+
+Custo do erro: quatro versoes de uma camada que nao precisava existir. O que teria pegado
+antes: uma auditoria que conte faces com `Studs` cuja normal nao aponta para cima. Ela
+agora existe, e e o `assert` que fecha o `08-LegoSurfacePass.luau`.
+
+### Conflito de dois agentes no mesmo Place
+
+O Astra trabalhava em `Information` ao mesmo tempo. Durante a passada ele tambem alterou o
+`Market`: removeu o `ServicePad` de 55 pecas, tirou os dois totens `PassBoards` e remontou
+as placas de gamepass dentro de `Signage`, e acrescentou pecas ao `Shopkeeper`. Nada disso
+foi desfeito. Um comando meu falhou no meio porque o Studio entrou em modo Play, e isso
+deixou o patio do mercado 0.24 no ar ate eu medir e corrigir.
+# Esclarecimento do takeover, 2026-09-06
+
+O usuario confirmou autoria da remocao das quatro soleiras antigas e tres linguas
+de grama: estavam sobrepondo o chao central. Remocao intencional, nao restaurar.
+Sem alteracao no DataModel ou salvamento. Auditoria visual ainda bloqueada por
+timeout de captura e confirmacao pendente de exclusividade de escrita.
+# Takeover Phase1, linguagem rejeitada, 2026-09-06
+
+Capturas retomadas apos Studio voltar a ficar visivel. Fingerprint4348b166 estavel.
+Rejeitadas rampas SE e linguas de pedra por aparencia de placas acrescentadas.
+4 linguas,3 rampas e2 ombros movidos para ServerStorage.AstraPhase1Takeover, com
+snapshot completo antes e capturas de cada operacao. Nada destruido ou salvo.
+851->842 BaseParts; quatro rotas principais testadas em Play sem pulo, passaram.
+Retorno Edit; fingerprint e8607660. Phase1 nao concluida/aprovada. Nao avancou Stage4.
+Relatorio completo e limites em ASTRA-PHASE1-TAKEOVER-20260906.md.
+
+# Segunda leva de pacotes de asset, 2026-09-07
+
+Rick entregou cinco arquivos: `Arbuzowski_Assets.rbxl`, `skullyassetpack.rbxl`,
+`hapy-s-assets-A0xWGpGPRyIjXX5g (4).rbxl`, `DeHapy-LowPolyPack.zip` e
+`Hapy_UI_v1 (1).rbxl`. Pedido: separar tudo dentro do mapa, sem quebrar os assets.
+
+Auditados fora do Studio com `lune` e `@lune/roblox`. Os cinco: zero `Script`, zero
+`LocalScript`, zero `ModuleScript`, zero `RemoteEvent`, zero `RemoteFunction`, zero `Sound`.
+
+Quatro zonas novas em `workspace.CrumbleArena.AssetStaging`, na faixa `x = 200`:
+`Zona_Arbuzowski` em `z = 124` com 30 modelos, `Zona_Skully` em `z = 228` com 13,
+`Zona_HapyAssets` em `z = 302` com 11, `Zona_HapyLowPoly` em `z = 376` com 8.
+Todos os 62 pedestais preenchidos.
+
+O exportador v1 so carregava geometria, o que teria trazido a cachoeira do Hapy como casca
+parada. Foi escrito o `exportar2.luau` mais o `ServerStorage.PackBuilder2`, que carregam
+`Beam`, `ParticleEmitter`, `Attachment`, `Weld`, `Decal`, `Texture`, `SurfaceAppearance` e
+as quatro classes de luz, remontam `ColorSequence` e `NumberSequence` a partir de
+keypoints, resolvem `Attachment0/1` e `p0/p1` numa segunda passada e escalam largura de
+Beam, tamanho de particula e alcance de luz junto com a geometria.
+
+Evidencia medida no place, modo Edit:
+
+```text
+01_Waterfall  8 Beam, todos com Attachment0 e Attachment1 ligados e Enabled = true
+              7 ParticleEmitter, todos Enabled = true
+              escala 0.371, larguras de Beam ja reduzidas para 5.20 e 5.55
+
+AssetStaging  726 BaseParts, 15 efeitos
+pecas sem ancoragem 0   MeshPart com malha vazia 0
+malhas que nao carregaram 1   interseccao com o lobby 0
+Lobby 1129 BaseParts, intacto
+```
+
+Uma falha: `Zona_Arbuzowski / 16_RockPile_01`, `rbxassetid://982730283`, recusado por
+`InsertService:CreateMeshPartAsync`, provavel moderacao. Marcado em vermelho. O nome
+`FALHOU` que o builder escreve e sobrescrito na linha seguinte, entao o registro confiavel
+e o atributo `MalhasQueFalharam` na zona.
+
+`Hapy_UI_v1` nao entrou no place. E so interface, 209 instancias e nenhuma malha, e a D-017
+proibe substituir a UI atual do lobby. Ficou em `Downloads`, aguardando decisao do Rick.
+
+O recado do `NoteBoard` foi ampliado com a secao da segunda leva, `TextSize 12`, medido com
+`TextService:GetTextSize`: 416 x 468 px dentro de 920 x 520 px, 52 px de sobra.
+
+**Captura de tela indisponivel nesta etapa.** O Studio foi reaberto no meio da sessao e o
+`screen_capture` passou a dar timeout em todas as tentativas, enquanto `execute_luau`
+continuou respondendo. Mesmo sintoma da sessao de 2026-09-06, que voltou ao normal quando a
+janela do Studio ficou visivel de novo. A prova acima e numerica, nao visual.
+# 2026-09-07: ajuste localizado de rochas
+
+Implementados tools/rebuild/30-RockCleanup.luau e30b-RockClearance.luau.
+Dez rochas existentes reduzidas e movidas para liberar cercas e construcoes.
+Snapshot em ServerStorage.AstraRockCleanup30.LobbyBefore, registro inicial ChangeLog;
+30b contem as seis correcoes posteriores de posicao. Duas medicoes pre-write iguais:
+1141 BaseParts, fingerprint simples -208843.87935307064.
+Validacao final:1141 BaseParts, zero nao ancoradas; zero bounding overlaps das rochas
+editadas contra cercas/Market/Information/Paths. Pastas nao relacionadas comparadas
+com snapshot, identicas em CFrame/Size. Capturas reais antes/depois inspecionadas.
+Parcialmente testado: sem novo Play/mobile. Sem salvar, publicar ou commit.
+# 2026-09-07: leaderboard simples com tres categorias
+
+Pedido do anexo075a2868 executado em Information e cor do InformationTerrace.
+Implementados31a/b/c/d em tools/rebuild. Nenhum asset externo novo nem script runtime.
+Antes:63 pecas na area, fingerprint18854.627277851105 repetida sem mudanca.
+Depois:83 pecas, unico Humanoid preservado no Most Donates, zero nao ancoradas.
+Lobby1141 ->1161; script existente do Market intocado. Snapshot LobbyBefore e elementos
+aposentados em ServerStorage.AstraLeaderboard31. Community/EventBoard arquivado,
+nao apagado; titulo Hall of Champions e cinco decals dourados tambem preservados.
+Comparacao confirmou pastas externas sem mudancas e geometria de Architecture intacta.
+Capturas antes/depois dos blocos e final com camera igual inspecionadas. Teste parcial:
+validacao Edit, sem teste Play/mobile ou ranking online. Nao salvo/publicado/commitado.
+Avaliacao artistica:6/10 antes,7.5/10 depois. Composicao limpa, mas patio ainda amplo
+e catalogo de assets aparece ao fundo. Catalogo nao movido por estar fora do escopo.

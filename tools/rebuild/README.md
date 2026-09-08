@@ -59,3 +59,40 @@ C:\Users\ricka\AppData\Local\Roblox\RobloxStudio\AutoSaves\
 
 Nao e `Local\Roblox\AutoSaves`. O Roblox descarta esses arquivos na proxima abertura do
 Studio, entao a primeira coisa a fazer numa recuperacao e copiar para `backups\`.
+
+## Acrescentado em 2026-09-06
+
+| Arquivo | O que reconstroi | Estado |
+| --- | --- | --- |
+| `05-BreakIslandSilhouette.luau` | lascas de borda da massa da ilha da versao anterior | escrito, **obsoleto no place atual** |
+| `06-BuildMarketStall.luau` | a cabana do mercado inteira, menos o rig do lojista | executado no place em 2026-09-06, em blocos |
+| `07-PoseShopkeeper.luau` | posicao, pose de aceno, rosto, bone e avental do lojista | executado no place em 2026-09-06, em blocos |
+| `08-LegoPlating.luau` | conversao de material e a camada de placas com stud | executado no place em 2026-09-06, em blocos |
+
+Aviso honesto sobre o estado dos tres novos: o resultado que esta no place foi produzido
+por estes mesmos comandos, mas executados em etapas separadas pelo Command Bar, com
+correcoes no meio do caminho. Os arquivos consolidam o resultado final e ainda **nao foram
+rodados de ponta a ponta num place descartavel**. Antes de confiar neles para recuperacao,
+rodar uma vez numa copia.
+
+O `05` ficou obsoleto porque a massa da ilha que ele quebrava foi substituida na
+reconstrucao do Astra em 2026-09-06. Ele fica como historico, nao rodar no place atual.
+
+O `07` depende do backup do rig em pose neutra, em
+`ServerStorage.MarketRollback_20260906.MarketBeforeLegoRebuild`. Sem ele o script aborta de
+proposito, para nao empilhar pose sobre pose.
+
+## Correcao do mesmo dia, 2026-09-06
+
+`08-LegoPlating.luau` foi **apagado**. Ele criava uma camada de 1.317 placas sobre o
+terreno, partindo da premissa errada de que `WedgePart` nao aceita stud. Aceita, na face
+que aponta para cima, que nestas pecas e a `LeftSurface` ou a `RightSurface`, e nao a
+`TopSurface`. Ver D-023.
+
+| Arquivo | O que faz | Estado |
+| --- | --- | --- |
+| `08-LegoSurfacePass.luau` | poe stud na face que aponta para cima, em todo o lobby | executado no place em 2026-09-06 |
+
+O novo nao cria peca nenhuma. Ele so escreve propriedade, e termina com um `assert` que
+conta faces com stud gravado sem apontar para cima. Se esse numero nao for zero, o script
+falha de proposito.

@@ -193,3 +193,51 @@ Valores originais do template, para reverter: `Brightness 3`, `ClockTime 14.5`,
 | Roxo premium | 146, 96, 214 e 88, 54, 148 |
 | Amarelo de destaque | 246, 196, 70 |
 | Vermelho, so em alvo | 226, 92, 84 |
+
+## Cabana do mercado, a partir de 2026-09-06
+
+Reconstruida por `tools/rebuild/06-BuildMarketStall.luau`. O arquivo e a fonte, esta secao
+e o resumo. 198 BaseParts, incluindo o rig do lojista.
+
+Sistema local: eixo de simetria em `x = -46.5`, laje do terraco com topo em `Y = 3.2`,
+ladrilho lego com topo em `3.44`, assoalho da loja com topo em `3.6`. A frente aponta para
+`+Z`, que e o lado de onde o jogador chega.
+
+| Elemento | Medida |
+| --- | --- |
+| Vao entre postes | 23.4 de largura, `x -58.2` a `-34.8` |
+| Profundidade | 9.0, dos postes do fundo em `z -44` aos da frente em `z -35` |
+| Poste do fundo | 1.6 x 10.25 x 1.6 sobre pe de pedra de 2.4 x 0.9 |
+| Poste da frente | 1.6 x 7.85 x 1.6 |
+| Toldo | 7 faixas de 3.3428 x 0.5 x 12.0, inclinacao 13.75 graus, plano centrado em `z -39.1`, `Y 12.4` |
+| Barra do toldo | `Y 10.97`, bandos alternando 1.15 e 0.75, descendo ate `9.64` |
+| Balcao | corpo 19.4 x 2.0 x 2.4 em `z -37.1`, tampo com topo em `Y 6.10` |
+| Parede do fundo | 4 fiadas de 23.4 x 1.6 x 0.8 |
+| Letreiro | fundo de 15.0 x 3.6 em `Y 13.55`, `z -36.2` |
+| Marca de atendimento | anel de 54 segmentos, raio 5.4, centro `(-46.5, 3.53, -30.2)` |
+| Totens de gamepass | `(-63, 8.2, -33)` e `(-30, 8.2, -33)`, abertos 33 graus para dentro |
+| Lojista | pe em `Y 3.6`, cabeca ate `8.78`, mao do aceno em `7.80` |
+
+A altura do toldo nao e livre. A cabeca do lojista com bone termina em `8.78`, entao a
+barra do toldo precisa ficar acima disso ou ele desaparece de quem olha de frente. Com
+18.6 graus a barra caia para `9.09` e os bandos ate `7.6`, e o lojista sumia.
+
+O balcao nao encosta nos postes da frente de proposito: ele termina em `z -35.9` e o poste
+comeca em `-35.8`, com 0.1 de folga. Sem essa folga as duas faces ficam coplanares.
+
+O suporte da prateleira do fundo fica em `Y 6.26`, e nao em `6.30`. Em `6.30` o topo dele
+coincide com o topo da fiada `BackCourse_2`, que e o caso proibido pela D-015.
+
+### Piso do terraco
+
+O terraco vai de `x -68` a `-24` e de `z -46` a `-19`, com os cantos cortados. A laje e de
+`WedgePart` e recebe a cor `198, 184, 156`. O stud vai na propria laje, na face que aponta
+para cima, que nestas pecas e a `LeftSurface` ou a `RightSurface` e nao a `TopSurface`.
+Ver D-023.
+
+Houve entre as duas coisas uma versao com 34 ladrilhos de 4 studs por cima, com topo em
+`3.44`. Ela foi removida: era um tapete de 0.24 de espessura e criava degrau na borda. O
+patio do mercado desceu 0.24 junto com ela, e hoje se apoia na laje, em `3.20`.
+
+A unica subida ate o terraco e a rampa `MarketRise`, em `x -36` a `-24`, `z -20` a `2`. As
+outras bordas sao degrau de cerca de 2.9 por desenho. Medido na rampa: degrau maximo 0.24.

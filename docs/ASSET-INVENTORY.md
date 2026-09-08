@@ -1,5 +1,14 @@
 # Inventario de assets
 
+## Reuso no jardim da fogueira, 2026-09-06
+
+Sem importacao externa. Reutilizada biblioteca Forest Nature Pack111025409160294,
+KittyPatife/Kay Lousberg, CC0 ja documentada: bush120362304717138 (8),
+grass91291478360434 (12), rock117365476866296 (6). Cada fonte foi inspecionada,
+zero descendentes; novos clones ancorados, sem colisao, toque e query. Textura de atlas
+retirada dos novos clones para utilizar paleta nativa. Lanternas autorais com Parts e
+PointLights, sem scripts nem assets publicados. Originais preservados no rollback.
+
 Estado: inventario ativo. Os assets usados no lobby estao registrados nas secoes 7 a 11.
 Nenhum arquivo bruto de pacote foi copiado para este repositorio.
 
@@ -335,3 +344,141 @@ prompts, sons, GUIs ou decais. Ele ficou ancorado, sem colisao, toque ou query, 
 lobby visivel porque a combinacao de textura azul e branca nao melhorava a composicao.
 O modelo carrega os atributos `AssetId`, `Creator`, `Package`, `License`, `ImportedBy`,
 `ImportedOn` e `Usage`.
+
+## 12. Lobby V2 - Checkpoint visual A, 2026-09-05
+
+O `search_asset` foi executado novamente no Studio antes da construcao decorativa. A
+ordem de busca foi inventario do usuario primeiro e Creator Store publico depois.
+
+| Termo | Escopo | Resultados | Decisao |
+| --- | --- | ---: | --- |
+| `low poly chair bench` | inventario do usuario | 4 | inseridos em quarentena, inspecionados e recusados por linguagem moderna |
+| `low poly market stall crate barrel` | inventario do usuario | 0 | sem acao |
+| `low poly lantern sign wood` | inventario do usuario | 0 | sem acao |
+| `stylized low poly rock vegetation` | inventario do usuario | 6 | mantidos os packs KayKit ja auditados |
+| `KayKit furniture` | Creator Store, gratuito | 10 | recusados: resultados nao correspondiam a um pacote KayKit verificavel |
+| `Kenney furniture kit` | Creator Store, gratuito | 10 | recusados: resultados nao correspondiam a um pacote Kenney verificavel |
+| `stylized low poly campsite props` | Creator Store, gratuito, filtro de criador verificado | 10 | recusados por origem/licenca insuficientes |
+| `stylized low poly market props` | Creator Store, gratuito, filtro de criador verificado | 10 | recusados por origem/licenca insuficientes |
+
+Os quatro itens do inventario foram inseridos com `insert_asset` somente em
+`ServerStorage.CrumbleArenaLibraries.Quarantine`. A inspecao encontrou exatamente um
+`MeshPart` em cada modelo e zero scripts, remotes ou packages:
+
+| Asset ID | Malha | Resultado |
+| --- | --- | --- |
+| `137361934863171` | `chairModernFrameCushion` | recusado; cadeira moderna incompatível com Crumble Refuge |
+| `128115488729838` | `loungeChair` | recusado; linguagem de lounge moderno |
+| `129644340900310` | `loungeSofa` | recusado; linguagem de lounge moderno |
+| `91335337630087` | `sideTable` | recusado; nao acrescentava narrativa ao lobby |
+
+Os modelos recusados foram removidos da quarentena depois da auditoria; somente os
+marcadores vazios de decisao ficaram em
+`ImportedAssets.AssetAuditRecords.RejectedSearchResults`.
+
+O Checkpoint A reutilizou apenas assets ja aprovados e sanitizados:
+
+- KayKit Forest Nature Pack: arvores, arbustos, tufos e rochas;
+- KayKit Prototype Bits: caixas e barris;
+- fogueira do usuario ja sanitizada, com efeitos nativos;
+- fonte low poly ja sanitizada;
+- leaderboard visual ja sanitizado, sem logica de ranking.
+
+Nenhum asset publico de procedencia duvidosa entrou no lobby ativo.
+
+## 13. Reconciliacao Astra, 2026-09-06
+
+Esta secao registra o estado da passagem atual, nao revalida retroativamente todas as
+afirmacoes anteriores. Nenhum asset externo novo foi importado neste update.
+
+Reutilizados da biblioteca do usuario, com licenca CC0 ja registrada:
+
+- Prototype Bits, 78867862192359, KittyPatife/Kay Lousberg: proto_box MeshId 71764690630135
+  e proto_barrel 117416911463463. As instancias-fonte inspecionadas nao tinham descendentes.
+  Caixas na prateleira e barril lateral, ancorados, sem colisao/toque/query; textura de
+  prototipo removida, material Wood. Atributos SourceAssetId e License nos novos clones.
+- Forest Nature Pack, 111025409160294: arbustos, tufos e forest_rock_1 117365476866296.
+  Tres rochas adicionais integradas ao horizonte, sem colisao/toque/query/sombras.
+
+Conteudo herdado com ressalvas:
+
+| Familia | Evidencia de origem | Situacao |
+| --- | --- | --- |
+| Low Poly Rock Pack [FREE], 2128776869 | GetProductInfoAsync identifica FracturedSkies, usuario 13540173; descricao permite uso em jogos/builds e exige credito | reutilizado; credito abaixo; criador sem badge verificado |
+| SummerLowPolyTree | malha de tronco 10272744865 pertence a akariizeroo, usuario 3570511485; copas 10272743622/43813/43955/44185/44379/44585 | familia herdada e ampliada, licenca do modelo UNVERIFIED |
+| LowPolyPineTree | malha 5960563431 pertence a GalaxyGaming822, usuario 1595089746 | familia herdada e ampliada, licenca do modelo UNVERIFIED |
+
+Credito: rochas do pacote Low Poly Rock Pack [FREE], por FracturedSkies, Asset ID
+2128776869. Manter esse credito ao preparar os creditos do jogo antes de publicar.
+
+A marca de auditoria A2_PublicTrees_15217079919 refere-se ao pacote de ItzRoVoider,
+com modelos Pine1/Oak3/Pine2/Oak2/Pine3/Oak1/Birch3/Branched1/Birch2/Branched2/Birch1.
+Ela nao prova a licenca das familias SummerLowPolyTree/LowPolyPineTree. O autor das
+malhas foi identificado, mas isso nao equivale a uma licenca expressa. Esta passagem
+nao deveria ter tratado heranca como aprovacao completa antes de ampliar essas familias.
+Nao publicar nem considerar a procedencia encerrada. Comprovar ou substituir por acervo
+verificado na proxima etapa; originais e clones sao recuperaveis pelo rollback/save.
+
+Buscas reais da retomada, sem importar os resultados publicos:
+
+| Termo | Escopo | Resultados | Decisao |
+| --- | --- | ---: | --- |
+| stylized low poly rock | Creator Store gratuito | 5 | descricoes vazias; nao aprovados |
+| prototype-bits | usuario | 1 | corresponde a biblioteca existente 78867862192359, reutilizada |
+| SummerLowPolyTree | Creator Store gratuito | 5 | resultados nao demonstram a origem da familia herdada |
+| LowPolyPineTree | Creator Store gratuito | 5 | nomes semelhantes nao comprovam identidade nem licenca |
+
+IDs de rochas nao importados: 80712416323486, 132273805473731, 95856498600006,
+125843486263237, 94799546214058. Rejeicao por falta de evidencia, nao acusacao de malware.
+Nao foi feita auditoria de descendentes de modelos que nao foram inseridos.
+
+Lobby ativo final: 0 LuaSourceContainers, 0 Remotes, 0 PackageLinks, 0 Bindables.
+Animate e PlayEmote do Shopkeeper retirados do mundo ativo, preservados no rollback.
+Fogueira e avatar herdados mantidos; os IDs originais completos continuam como lacuna
+historica, sem inventar criador ou licenca. Ver relatorio da passagem para contagens.
+
+## 15. Crumble Supply, 2026-09-07
+
+Nenhum asset externo novo importado. Busca user `merchant`:0 resultados. Creator Store
+`stylized market canopy`:182668892 (TriSeal),75841442625076 (Shade2TVortexL16),
+1040694648 (Trueese),117502919075207 (Rajadop.yt). Nao usados por evidencia insuficiente
+de procedencia/licenca; nao foram inseridos nem auditados internamente.
+Busca `R6 shopkeeper`:138575721178909 (StrikerPrVanta41561),17013806169 (SamGivesSeeds),
+3325956489 (ACRG22),70189022 (weegee717). Primeiros sem procedencia suficiente, terceiro
+sem relacao artistica, ultimo com funcionalidade de armas fora de escopo. Nao importados.
+R6 criado pela API nativa Players:CreateHumanoidModelFromDescriptionAsync, descricao
+sem IDs externos. Rosto padrao Roblox, uniforme autoral do Market anterior reaproveitado.
+Toldo autoral; bau existente reutilizado. KeeperGreeting e codigo proprio, nao importado.
+
+## 14. Importacao de 2026-09-06, bau do mercado
+
+Primeiro modelo do Creator Store publico aceito no lobby ativo. A D-012 restringia assets
+ao inventario do usuario, e o Rick liberou a busca no catalogo na etapa visual, com a
+condicao de auditar. A auditoria foi feita antes de o modelo sair da quarentena.
+
+| Campo | Valor |
+| --- | --- |
+| Nome | Low Poly Medieval Treasure Chest, RPG Loot Prop |
+| Asset ID | 138159578578190 |
+| Criador | Ramonzinhuh, id 536782829 |
+| Criado e atualizado | 2026-02-18 |
+| Preco | gratuito |
+| Fonte da procedencia | `MarketplaceService:GetProductInfo` de dentro do Studio |
+
+Auditoria em quarentena, em `ServerStorage.QUARENTENA_Chest_Ramonzinhuh`:
+
+| Verificacao | Resultado |
+| --- | --- |
+| Descendentes | 4 |
+| BaseParts | 3 MeshPart |
+| `LuaSourceContainer` | 0 |
+| `RemoteEvent` e `RemoteFunction` | 0 |
+| `BindableEvent` | 0 |
+| `Sound`, `Decal`, `Texture` | 0 |
+
+Chegou com 212 x 261 x 328 studs e foi reduzido por fator 0.014 para 2.97 x 3.65 x 4.60.
+Vive em `Lobby.Market.SideProps.TreasureChest`, sobre o estrado em `(-58.5, 3.84, -27.0)`.
+Carrega os atributos `Origem`, `AssetId` e `AuditadoEm`.
+
+Continua pendente a procedencia das duas familias herdadas de arvore, `SummerLowPolyTree` e
+`LowPolyPineTree`, que nao veio desta sessao. Ver secao 13.
